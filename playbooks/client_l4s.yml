@@ -4,25 +4,96 @@
   become: yes
   tasks:
 
-    - name: Instalar net-tools (para comando arp)
+    # -----------------------------------------------------
+    # 1. Tarefas de instalação base
+    # -----------------------------------------------------
+    - name: Instalar pacotes base (net-tools e iperf)
       apt:
-        name: net-tools
+        name:
+          - net-tools     # necessário para 'arp'
+          - iperf         # ferramenta de teste de banda
         state: present
         update_cache: yes
 
-    - block:  
+    # -----------------------------------------------------
+    # 2. Verificação e instalação do kernel L4S (Prague)
+    # -----------------------------------------------------
+    - name: Verificar versão do kernel
+      command: uname -r
+      register: kernel_version
+      changed_when: false
+
+    - name: Verificar se kernel é L4S (prague)
+      set_fact:
+        l4s_installed: "{{ 'prague' in kernel_version.stdout }}"
+
+    # Instalar caso versão seja não L4S
+    - name: Instalar unzip e wget
+      apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      loop:
+        - unzip
+        - wget
+      when: not l4s_installed
+
+    - name: Baixar kernel L4S
+      get_url:
+        url: 'https://github.com/L4STeam/linux/releases/download/testing-build/l4s-testing.zip'
+        dest: /tmp/l4s-testing.zip
+        mode: '0644'
+      when: not l4s_installed
+
+    - name: Descompactar
+      unarchive:
+        src: /tmp/l4s-testing.zip
+        dest: /tmp/
+        remote_src: yes
+      when: not l4s_installed
+
+    - name: Instalar kernel
+      shell:
+        cmd: dpkg --install debian_build/*
+        chdir: /tmp/
+      when: not l4s_installed
+
+    - name: Atualizar grub
+      shell: update-grub
+      when: not l4s_installed
+
+    - name: Reiniciar
+      reboot:
+        reboot_timeout: 600
+      when: not l4s_installed
+
+    # Mensagem quando já existente
+    - name: Kernel L4S já estava instalado
+      debug:
+        msg: "Kernel L4S (Prague) já está instalado. Nenhuma ação necessária."
+      when: l4s_installed
+
+    # -----------------------------------------------------
+    # 3. Configuração do cliente L4S
+    # -----------------------------------------------------
+    - block:
+
         - name: Del default route
           command: ip route del default
 
         - name: Habilitar ECN
           command: sysctl -w net.ipv4.tcp_ecn=3
 
+        - name: Habilitar tcp Prague
+          command: sysctl -w net.ipv4.tcp_congestion_control=prague 
+
         - name: Desativar offload TSO, GSO e GRO
           command: ethtool -K enp0s8 tso off gso off gro off
 
         - name: Configurar FQ no TC
           command: "tc qdisc replace dev enp0s8 root handle 1: fq limit 20480 flow_limit 10240"
-        
+
         - name: Ajuste arp table
-          command: arp -i enp0s8 -s 192.168.56.50 08:00:27:DD:DD:DD 
+          command: arp -i enp0s8 -s 192.168.56.50 08:00:27:DD:DD:DD
+
       ignore_errors: yes

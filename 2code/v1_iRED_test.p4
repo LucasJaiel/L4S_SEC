@@ -251,54 +251,48 @@ control MyIngress(inout headers hdr,
 /*************************************************************************
 ****************  E G R E S S   P R O C E S S I N G   *******************
 *************************************************************************/
-
 control MyEgress(inout headers hdr,
                  inout metadata meta,
                  inout standard_metadata_t standard_metadata) {
 
-    // ========== REGISTRADORES EXISTENTES ==========
     register<bit<32>>(8) QueueID;
-    register<bit<16>>(PORTS) dropProbability;
-    register<bit<32>>(1) targetDelay_reg;
+    register<bit<16>>(PORTS) dropProbability; // Register to save drop probability      
+    register<bit<32>>(PORTS) QDelay_reg; //Register to save queue delay           
+    counter(4, CounterType.packets) recirc; // Counter recirculate pkts
+    counter(4, CounterType.packets) cloneCount; // Counter clone pkts
 
-    
-    // ========== CONTADORES EXISTENTES ==========
-    counter(4, CounterType.packets) recirc;
-    counter(4, CounterType.packets) cloneCount;
-    
     // ========== NOVOS REGISTRADORES PARA MÉTRICAS ==========
     
-    // Timestamps do último pacote (para calcular IPI/IAT)
-    register<bit<48>>(PORTS) last_packet_timestamp_l4s;
-    register<bit<48>>(PORTS) last_packet_timestamp_classic;
+    // Registradores para Delay da Fila separados por tipo de tráfego (em microsegundos)
+    register<bit<32>>(PORTS) queue_delay_l4s;      // EWMA do delay para tráfego L4S
+    register<bit<32>>(PORTS) queue_delay_classic;  // EWMA do delay para tráfego Classic
     
-    // Inter-Packet Interval (IPI) / Inter-Arrival Time (IAT)
-    register<bit<48>>(PORTS) ipi_l4s;              // IPI médio L4S em microsegundos
-    register<bit<48>>(PORTS) ipi_classic;          // IPI médio Classic em microsegundos
+    // Registradores para IPI/IAT (Inter-Packet Interval / Inter-Arrival Time)
+    register<bit<48>>(PORTS) last_packet_timestamp_l4s;    // Timestamp do último pacote L4S
+    register<bit<48>>(PORTS) last_packet_timestamp_classic; // Timestamp do último pacote Classic
+    register<bit<48>>(PORTS) ipi_l4s;              // IPI bruto (raw) para L4S (em microsegundos)
+    register<bit<48>>(PORTS) ipi_classic;          // IPI bruto (raw) para Classic (em microsegundos)
     
-    // Contadores de Pacotes Marcados CE (Congestion Experienced)
-    register<bit<64>>(PORTS) ce_marked_l4s;        // Total de pacotes L4S marcados com ECN
+    // Registradores para Contagem de Pacotes Dropados por porta
+ 
+    register<bit<64>>(PORTS) dropped_packets_classic; // Total de pacotes Classic dropados
     
-    // Contadores de Pacotes Descartados
-    register<bit<64>>(PORTS) dropped_classic;      // Total de pacotes Classic dropados
+    // Registradores para Contagem de Pacotes Marcados (CE - Congestion Experienced)
+    register<bit<64>>(PORTS) ce_marked_packets_l4s;   // Total de pacotes L4S marcados com ECN=11
     
-    // Atraso de Fila (Queue Delay) separado por tipo
-    register<bit<32>>(PORTS) queue_delay_l4s;      // EWMA do delay para L4S em microsegundos
-    register<bit<32>>(PORTS) queue_delay_classic;  // EWMA do delay para Classic em microsegundos
-    
-    // Contadores Totais de Pacotes (para estatísticas)
-    register<bit<64>>(PORTS) total_packets_l4s;    // Total de pacotes L4S processados
-    register<bit<64>>(PORTS) total_packets_classic; // Total de pacotes Classic processados
+    // Registradores para Contagem Total de Pacotes processados
+    register<bit<64>>(PORTS) total_packets_l4s;       // Total de pacotes L4S processados
+    register<bit<64>>(PORTS) total_packets_classic;   // Total de pacotes Classic processados
 
-    // ========== ACTIONS (mantém as existentes) ==========
-    
-    action recirculate_packet() {
+
+    // Send again the packet through both pipelines
+    action recirculate_packet(){
         recirculate_preserving_field_list(0);
         recirc.count(meta.queue_metadata.output_port);
     }
 
-    action clonePacket() {
-        clone_preserving_field_list(CloneType.E2E, meta.queue_metadata.output_port, 0);
+    action clonePacket(){
+        clone_preserving_field_list(CloneType.E2E, meta.queue_metadata.output_port,0);
         cloneCount.count(meta.queue_metadata.output_port);
     }
 
@@ -322,52 +316,54 @@ control MyEgress(inout headers hdr,
 
     table swtrace {
         actions = { 
-            add_swtrace; 
-            NoAction; 
+	        add_swtrace; 
+	        NoAction; 
         }
         default_action = NoAction();      
     }
     
-    // ========== APPLY BLOCK ==========
-    
     apply {
+	
+	QueueID.write((bit<32>)standard_metadata.qid, 1);
         
-        // ========== REGISTRAR QUAL FILA FOI USADA (DEBUG) ==========
-        QueueID.write((bit<32>)standard_metadata.qid, 1);
-        
-        // ========== PROCESSAR INT (se houver) ==========
+        //* Only INT packets *//    
         if (hdr.nodeCount.isValid()) {
+        
             swtrace.apply();
+        
         }
         
-        // ========== VERIFICAR SE É CLONE (RECIRCULAÇÃO) ==========
+        //* Check IF is a clone pkt generated in the egress *//
         if (standard_metadata.instance_type == BMV2_V1MODEL_INSTANCE_TYPE_EGRESS_CLONE) {
+            
             meta.queue_metadata.output_port = (bit<32>)standard_metadata.egress_port;
             recirculate_packet();
         } 
-        else {
-            // ========== APENAS PACOTES REGULARES (NÃO CLONES) ==========
+        else { 
+
+            //* Only regular (not cloned) packets enter here *//
             
             bit<32> port_idx = (bit<32>)standard_metadata.egress_port;
             bool is_l4s = (hdr.ipv4.l4s == 1);
-            
-            // ========== ATUALIZAR MÉTRICAS DE TIMESTAMPS E IPI/IAT ==========
-            bit<48> current_time = standard_metadata.egress_global_timestamp;
+
+            // ========== COLETAR MÉTRICAS: IPI/IAT ==========
+            bit<48> current_timestamp = standard_metadata.egress_global_timestamp;
             
             if (is_l4s) {
-                // IPI/IAT para L4S
-                bit<48> last_time;
-                last_packet_timestamp_l4s.read(last_time, port_idx);
+                // Processar IPI/IAT para tráfego L4S
+                bit<48> last_ts;
+                last_packet_timestamp_l4s.read(last_ts, port_idx);
                 
-                if (last_time != 0) {
-                    bit<48> interval = current_time - last_time;
-                    bit<48> current_ipi;
-                    ipi_l4s.read(current_ipi, port_idx);
-                    // EWMA: IPI = (7*IPI + interval) / 8
-                    bit<48> new_ipi = ((current_ipi << 3) - current_ipi + interval) >> 3;
-                    ipi_l4s.write(port_idx, new_ipi);
+                if (last_ts != 0) {
+                    // Calcular intervalo bruto entre pacotes (raw IPI)
+                    bit<48> interval = current_timestamp - last_ts;
+                    
+                    // Armazenar o valor bruto diretamente
+                    ipi_l4s.write(port_idx, interval);
                 }
-                last_packet_timestamp_l4s.write(port_idx, current_time);
+                
+                // Atualizar timestamp do último pacote
+                last_packet_timestamp_l4s.write(port_idx, current_timestamp);
                 
                 // Incrementar contador total de pacotes L4S
                 bit<64> total_l4s;
@@ -375,150 +371,191 @@ control MyEgress(inout headers hdr,
                 total_packets_l4s.write(port_idx, total_l4s + 1);
                 
             } else {
-                // IPI/IAT para Classic
-                bit<48> last_time;
-                last_packet_timestamp_classic.read(last_time, port_idx);
+                // Processar IPI/IAT para tráfego Classic
+                bit<48> last_ts;
+                last_packet_timestamp_classic.read(last_ts, port_idx);
                 
-                if (last_time != 0) {
-                    bit<48> interval = current_time - last_time;
-                    bit<48> current_ipi;
-                    ipi_classic.read(current_ipi, port_idx);
-                    bit<48> new_ipi = ((current_ipi << 3) - current_ipi + interval) >> 3;
-                    ipi_classic.write(port_idx, new_ipi);
+                if (last_ts != 0) {
+                    // Calcular intervalo bruto entre pacotes (raw IPI)
+                    bit<48> interval = current_timestamp - last_ts;
+                    
+                    // Armazenar o valor bruto diretamente
+                    ipi_classic.write(port_idx, interval);
                 }
-                last_packet_timestamp_classic.write(port_idx, current_time);
+                
+                last_packet_timestamp_classic.write(port_idx, current_timestamp);
                 
                 // Incrementar contador total de pacotes Classic
                 bit<64> total_classic;
                 total_packets_classic.read(total_classic, port_idx);
                 total_packets_classic.write(port_idx, total_classic + 1);
             }
+
+            //* Read TARGET_DELAY from register updated by Control Plane *//
+            bit<32> TARGET_DELAY = 20000; 
+
             
-            // ========== MEDIR DELAY DA FILA ==========
-            bit<32> TARGET_DELAY = 20000; // 20ms em microsegundos
+            //* Get queue delay per packet after TM *//
             bit<32> qdelay = (bit<32>)standard_metadata.deq_timedelta;
+        
+            //* Previous Queue Delay by port used to compute moving average *//
+            bit<32> previousQDelay;                       
+            QDelay_reg.read(previousQDelay, (bit<32>)standard_metadata.egress_port);
             
-            // Ler delay anterior (EWMA separado por tipo de tráfego)
-            bit<32> previousQDelay;
-            if (is_l4s) {
-                queue_delay_l4s.read(previousQDelay, port_idx);
-            } else {
-                queue_delay_classic.read(previousQDelay, port_idx);
-            }
+            //* Compute Exponentially-Weighted Mean Average (EWMA) of queue delay *//
+            // EWMA = alpha*qdelay + (1 - alpha)*previousEWMA
+            // We use alpha = 0.5 such that multiplications can be replaced by bit shifts
             
-            // Calcular EWMA do delay: alpha = 0.5
-            bit<32> EWMA = (qdelay >> 1) + (previousQDelay >> 1);
+            bit<32> EWMA = (qdelay>>1) + (previousQDelay>>1);
+
+            //* Update register *//
+            QDelay_reg.write((bit<32>)standard_metadata.egress_port, EWMA);
             
-            // Atualizar registrador de delay
+            // ========== COLETAR MÉTRICAS: DELAY DA FILA POR TIPO ==========
             if (is_l4s) {
                 queue_delay_l4s.write(port_idx, EWMA);
             } else {
                 queue_delay_classic.write(port_idx, EWMA);
             }
+                                 
+            //* Check if the queue delay reach the target limit *//
+            //* 0 = no drop    *//
+            //* 1 = Maybe drop *//
+            //* 2 = drop       *//
+
+            bit<8> target_violation = 0;  // Inicializar com valor padrão
+
+            //* No drop *//
+            if (EWMA <= TARGET_DELAY){
             
-            // ========== CLASSIFICAR NÍVEL DE CONGESTIONAMENTO ==========
-            bit<8> target_violation;
+                target_violation = 0;
             
-            if (EWMA <= TARGET_DELAY) {
-                target_violation = 0; // Sem congestionamento
-            } else if ((EWMA > TARGET_DELAY) && (EWMA < (TARGET_DELAY << 1))) {
-                target_violation = 1; // Congestionamento moderado
-            } else {
-                target_violation = 2; // Congestionamento severo
             }
+            //* Maybe drop *//
+            else if ((EWMA > TARGET_DELAY) && (EWMA < (TARGET_DELAY<<1))){ 
             
-            // ========== PROCESSAR CONGESTIONAMENTO MODERADO ==========
+                target_violation = 1;
+            
+            }
+            //* Drop *//
+            else if (EWMA >= (TARGET_DELAY<<1)){
+
+                target_violation = 2;
+
+            } 
+
+            
             if (target_violation == 1) {
-                
+
                 bit<16> rand_classic;
                 random(rand_classic, 0, 65535);
                 bit<16> rand_l4s = rand_classic >> 1;
                 bit<16> dropProb;
                 bit<16> dropProb_temp;
-                
-                if (is_l4s) {
-                    // ===== TRÁFEGO L4S: MARCAÇÃO ECN PROBABILÍSTICA =====
+
+                if (hdr.ipv4.l4s == 1){
+
                     bool mark_decision_l4s;
-                    dropProbability.read(dropProb, port_idx);
+                    dropProbability.read(dropProb, (bit<32>)standard_metadata.egress_port);
                     
-                    if (rand_l4s < dropProb) {
-                        // Decidiu MARCAR
+                    
+                    //* Compute L4S mark probability *//
+                    if (rand_l4s < dropProb){
+                        
                         dropProb_temp = dropProb - 1;
-                        dropProbability.write(port_idx, dropProb_temp);
+
+                        dropProbability.write((bit<32>)standard_metadata.egress_port,dropProb_temp);
+                        
                         mark_decision_l4s = true;
-                    } else {
-                        // Decidiu NÃO MARCAR
+
+                    }else{
+
                         dropProb_temp = dropProb + 1;
-                        dropProbability.write(port_idx, dropProb_temp);
+
+                        dropProbability.write((bit<32>)standard_metadata.egress_port,dropProb_temp);
+
                         mark_decision_l4s = false;
+
                     }
-                    
-                    // Aplicar marcação ECN se decidiu marcar
-                    if (mark_decision_l4s == true) {
-                        hdr.ipv4.ecn = 3; // CE (Congestion Experienced)
+
+                    //* Mark ECN bit to L4S traffic *//
+                    if (mark_decision_l4s == true){
                         
-                        // Incrementar contador de pacotes marcados CE
+                        hdr.ipv4.ecn = 3;
+                        
+                        // ========== COLETAR MÉTRICAS: PACOTES MARCADOS CE ==========
                         bit<64> ce_count;
-                        ce_marked_l4s.read(ce_count, port_idx);
-                        ce_marked_l4s.write(port_idx, ce_count + 1);
-                    }
+                        ce_marked_packets_l4s.read(ce_count, port_idx);
+                        ce_marked_packets_l4s.write(port_idx, ce_count + 1);
                     
-                } else {
-                    // ===== TRÁFEGO CLASSIC: DROP PROBABILÍSTICO =====
+                    } 
+
+                }else{
+
                     bool drop_decision_classic;
-                    dropProbability.read(dropProb, port_idx);
-                    
-                    if (rand_classic < dropProb) {
-                        // Decidiu DROPAR
-                        dropProb_temp = dropProb - 1;
-                        dropProbability.write(port_idx, dropProb_temp);
-                        drop_decision_classic = true;
-                    } else {
-                        // Decidiu NÃO DROPAR
-                        dropProb_temp = dropProb + 1;
-                        dropProbability.write(port_idx, dropProb_temp);
-                        drop_decision_classic = false;
-                    }
-                    
-                    // Executar drop se decidiu dropar
-                    if (drop_decision_classic == true) {
-                        meta.queue_metadata.output_port = port_idx;
-                        clonePacket(); // Clone vai recircular e ativar flag de drop
+                    dropProbability.read(dropProb, (bit<32>)standard_metadata.egress_port);
+
+                    //* Compute Classic drop probability *//
+                    if (rand_classic < dropProb){
                         
-                        // Incrementar contador de pacotes dropados
+                        dropProb_temp = dropProb - 1;
+
+                        dropProbability.write((bit<32>)standard_metadata.egress_port,dropProb_temp);
+                        
+                        drop_decision_classic = true;
+
+                    }else{
+
+                        dropProb_temp = dropProb + 1;
+
+                        dropProbability.write((bit<32>)standard_metadata.egress_port,dropProb_temp);
+
+                        drop_decision_classic = false;
+
+                    }
+
+
+                    if (drop_decision_classic == true){
+                        
+                        meta.queue_metadata.output_port = (bit<32>)standard_metadata.egress_port;
+                        clonePacket();
+                        
+                        // ========== COLETAR MÉTRICAS: PACOTES DROPADOS ==========
                         bit<64> drop_count;
-                        dropped_classic.read(drop_count, port_idx);
-                        dropped_classic.write(port_idx, drop_count + 1);
+                        dropped_packets_classic.read(drop_count, port_idx);
+                        dropped_packets_classic.write(port_idx, drop_count + 1);
+
                     }
                 }
+                        
+            }else if (target_violation == 2){
+
+                //* Mark ECN bit to L4S traffic *//
+                if (hdr.ipv4.l4s == 1){
                 
-            } else if (target_violation == 2) {
-                // ========== PROCESSAR CONGESTIONAMENTO SEVERO ==========
-                
-                if (is_l4s) {
-                    // ===== L4S: MARCAR SEMPRE =====
-                    hdr.ipv4.ecn = 3; // CE (Congestion Experienced)
+                    hdr.ipv4.ecn = 3;
                     
-                    // Incrementar contador de pacotes marcados CE
+                    // ========== COLETAR MÉTRICAS: PACOTES MARCADOS CE ==========
                     bit<64> ce_count;
-                    ce_marked_l4s.read(ce_count, port_idx);
-                    ce_marked_l4s.write(port_idx, ce_count + 1);
+                    ce_marked_packets_l4s.read(ce_count, port_idx);
+                    ce_marked_packets_l4s.write(port_idx, ce_count + 1);
+
+                }else{
+
+                    meta.queue_metadata.output_port = (bit<32>)standard_metadata.egress_port;
+                    clonePacket();
                     
-                } else {
-                    // ===== CLASSIC: DROPAR SEMPRE =====
-                    meta.queue_metadata.output_port = port_idx;
-                    clonePacket(); // Clone vai recircular e ativar flag de drop
-                    
-                    // Incrementar contador de pacotes dropados
+                    // ========== COLETAR MÉTRICAS: PACOTES DROPADOS ==========
                     bit<64> drop_count;
-                    dropped_classic.read(drop_count, port_idx);
-                    dropped_classic.write(port_idx, drop_count + 1);
+                    dropped_packets_classic.read(drop_count, port_idx);
+                    dropped_packets_classic.write(port_idx, drop_count + 1);
+                
                 }
             }
-            // Se target_violation == 0, não faz nada (sem congestionamento)
-        }
-    }
-}
+        }             
+    } 
+} 
+
 /*************************************************************************
 *************   C H E C K S U M    C O M P U T A T I O N   **************
 *************************************************************************/
