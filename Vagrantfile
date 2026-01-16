@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "clientp4" do |client|
     client.vm.box = BOX_IMAGE 
     client.vm.hostname = "clientl4s-p4"
-    client.vm.network "private_network", ip: "192.168.56.10", mac: "080027AAAAAA",
+    client.vm.network "private_network", ip: "192.168.54.10", mac: "080027AAAAAA",
       virtualbox__intnet: "l4s_client-s1"
 #    client.ssh.insert_key = false
 #    client.ssh.private_key_path = "vagrant_key"
@@ -21,12 +21,12 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  # VM Classic Client (Subnet 192.168.57.0/24)
+  # VM Classic Client (Subnet 192.168.55.0/24)
   config.vm.define "classic-clientp4" do |classic_client|
     classic_client.vm.box = BOX_IMAGE 
     classic_client.vm.hostname = "classic-client"
-    classic_client.vm.network "private_network", ip: "192.168.57.10", mac:"080027BBBBBB",
-      virtualbox__intnet: "classic_clients-s1"
+    classic_client.vm.network "private_network", ip: "192.168.55.10", mac:"080027BBBBBB",
+      virtualbox__intnet: "classic_client-s1"
     classic_client.vm.provider "virtualbox" do |vb|
       vb.name = "classic-client-p4" 
     end
@@ -35,12 +35,12 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  # VM Malicious Client (Nova subnet 192.168.57.0/24)
+  # VM Malicious Client (Nova subnet 192.168.56.0/24)
   config.vm.define "malicious-clientp4" do |malicious_client|
     malicious_client.vm.box = BOX_IMAGE
     malicious_client.vm.hostname = "malicious-client"
-    malicious_client.vm.network "private_network", ip: "192.168.57.20", mac: "080027CCCCCC",
-      virtualbox__intnet: "classic_clients-s1"
+    malicious_client.vm.network "private_network", ip: "192.168.56.10", mac: "080027CCCCCC",
+      virtualbox__intnet: "malicious_client-s1"
     malicious_client.vm.provider "virtualbox" do |vb|
       vb.name = "malicious-client-p4" 
     end
@@ -74,15 +74,15 @@ Vagrant.configure("2") do |config|
 
     # Interface enp0s10 (Classic_Clients - bmv2)
     switch.vm.network "private_network", auto_config: false, mac: "080027AAAABB",
-      virtualbox__intnet: "classic_clients-s1"
+      virtualbox__intnet: "classic_client-s1"
 
-    # Interface enp0s16 (L4S servers - bmv2)
+    # Interface enp0s16 (Malicious CLient - bmv2)
     switch.vm.network "private_network", auto_config: false, mac: "080027AAAABC",
-      virtualbox__intnet: "l4s_server-s1"
+      virtualbox__intnet: "malicious_client-s1"
     
-    # Interface enp0s17(Classic Server - bmv2)
+    # Interface enp0s17(Servers - bmv2)
     switch.vm.network "private_network", auto_config:  false, mac: "080027AAAABD",
-      virtualbox__intnet: "classic_server-s1"
+      virtualbox__intnet: "servers-s1"
     
     switch.vm.provision "ansible" do |ansible|
       ansible.playbook = "playbooks/router.yml"
@@ -93,10 +93,10 @@ Vagrant.configure("2") do |config|
   config.vm.define "serverp4" do |server|
     server.vm.box = BOX_IMAGE
     server.vm.hostname = "server-l4s-p4"
-    server.vm.network "private_network",ip: "192.168.56.50", mac: "080027DDDDDD",
-      virtualbox__intnet: "l4s_server-s1"
+    server.vm.network "private_network",ip: "192.168.57.10", mac: "080027DDDDDD",
+      virtualbox__intnet: "servers-s1"
     server.vm.provider "virtualbox" do |vb|
-      vb.name = "servidor-l4s-p4" 
+      vb.name = "servers-s1" 
     end
 
     server.vm.provision "ansible" do |ansible|
@@ -108,8 +108,8 @@ Vagrant.configure("2") do |config|
   config.vm.define "classic-serverp4" do |classic_server|
     classic_server.vm.box = BOX_IMAGE
     classic_server.vm.hostname = "classic-server"
-    classic_server.vm.network "private_network", ip: "192.168.57.50", mac: "080027EEEEEE",
-      virtualbox__intnet: "classic_server-s1"
+    classic_server.vm.network "private_network", ip: "192.168.57.20", mac: "080027EEEEEE",
+      virtualbox__intnet: "servers-s1"
     classic_server.vm.provider "virtualbox" do |vb|
       vb.name = "peer_classic"
     end 

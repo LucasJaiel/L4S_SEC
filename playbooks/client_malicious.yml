@@ -4,9 +4,11 @@
   become: yes
   tasks:
 
-    - name: Instalar net-tools (para comando arp)
+    - name: Instalar net-tools (para comando arp) e iperf
       apt:
-        name: net-tools
+        name: 
+          - net-tools
+          - iperf
         state: present
         update_cache: yes
 
@@ -18,11 +20,14 @@
           command: ip link set enp0s8 up
 
         - name: Ajuste arp table
-          command: arp -i enp0s8 -s 192.168.57.50 08:00:27:EE:EE:EE
+          command: arp -i enp0s8 -s 192.168.57.20 08:00:27:EE:EE:EE
 
         - name: Desabilitar ECN
           command: "sysctl -w net.ipv4.tcp_ecn=0"
 
+        - name: Adicionar rota estática para 192.168.57.20
+          command: "ip route add 192.168.57.20 dev enp0s8"
+
         - name: Marcar pacotes com TOS (mangle POSTROUTING)
-          command: "iptables -t mangle -A POSTROUTING -j TOS --set-tos 0x01/0x03"
+          command: "iptables -t mangle -A POSTROUTING -p ip -j DSCP --set-dscp 0x01"
       ignore_errors: yes

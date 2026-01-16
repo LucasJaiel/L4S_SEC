@@ -4,9 +4,11 @@
   become: yes
   tasks: 
 
-    - name: Instalar net-tools (para comando arp)
+    - name: Instalar net-tools (para comando arp) e iperf
       apt:
-        name: net-tools
+        name: 
+          - net-tools
+          - iperf
         state: present
         update_cache: yes
 
@@ -18,10 +20,16 @@
           command: ip link set enp0s8 up
         
         - name: Adjuste arp table
-          command: arp -i enp0s8 -s 192.168.57.10 08:00:27:BB:BB:BB
+          command: arp -i enp0s8 -s 192.168.55.10 08:00:27:BB:BB:BB
 
         - name: Adjuste arp table
-          command: arp -i enp0s8 -s 192.168.57.20 08:00:27:CC:CC:CC
+          command: arp -i enp0s8 -s 192.168.56.10 08:00:27:CC:CC:CC
+
+        - name: Adicionar rota estática para client_classic
+          command: "ip route add 192.168.55.10 dev enp0s8"
+
+        - name: Adicionar rota estática para malicious_client
+          command: "ip route add 192.168.56.10 dev enp0s8"
 
 
       ignore_errors: yes

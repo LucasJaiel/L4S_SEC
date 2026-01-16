@@ -94,6 +94,10 @@
           command: "tc qdisc replace dev enp0s8 root handle 1: fq limit 20480 flow_limit 10240"
 
         - name: Ajuste arp table
-          command: arp -i enp0s8 -s 192.168.56.10 08:00:27:AA:AA:AA
+          command: arp -i enp0s8 -s 192.168.54.10 08:00:27:AA:AA:AA
+    
+        - name: Adicionar rota estática para 192.168.54.10
+          command: "ip route add 192.168.54.10 dev enp0s8"
+
 
       ignore_errors: yes
