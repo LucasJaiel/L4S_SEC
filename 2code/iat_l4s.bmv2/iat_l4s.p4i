@@ -1203,10 +1203,11 @@ control MyIngress(inout headers hdr,
                 flow_packet_count.write(flow_hash, pkt_count + 1);
             }
 
-            // Lógica original de drop
+            //* Read the output port state from the register*//
             bit<1> flag;
             flagtoDrop_reg.read(flag, (bit<32>)standard_metadata.egress_spec);
 
+            //* Check if the congestion flag is 1 (Drop ON). *//
             if (flag == 1){
                 if ((hdr.ipv4.l4s != 1) && (hdr.nodeCount.isValid() == false)){
                     standard_metadata.priority = (bit<3>)7;

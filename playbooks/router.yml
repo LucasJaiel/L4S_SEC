@@ -18,7 +18,7 @@
       command: ifconfig enp0s17 up
 
     - name: Compile p4 code
-      command: p4c -b bmv2 /vagrant/code/iRED_teste.p4 -o /vagrant/code/iRED_l4s.bmv2
+      command: p4c -b bmv2 /vagrant/2code/iat_l4s.p4 -o /vagrant/2code/iat_l4s.bmv2
     
   
     - name: Start Bmv2 Switch
@@ -28,13 +28,16 @@
     
   
     - name: Insert entries in switch table by control plane
-      shell: cat /vagrant/code/table1.txt | simple_switch_CLI
+      shell: cat /vagrant/2code/table1.txt | simple_switch_CLI
+    
+    - name: Insert general configs, mirroring and queues
+      shell: cat /vagrant/2code/general_config.txt | simple_switch_CLI
     
 
     - name: Disable offloading features on enp0s9
       command: ethtool --offload enp0s9 gso off tso off gro off
     
 
-    - name: Disable offloading features on enp0s10
-      command: ethtool --offload enp0s10 gso off tso off gro off
+    - name: Disable offloading features on enp0s17
+      command: ethtool --offload enp0s17 gso off tso off gro off
     
