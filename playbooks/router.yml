@@ -28,10 +28,10 @@
     
   
     - name: Insert entries in switch table by control plane
-      shell: cat /vagrant/2code/table1.txt | simple_switch_CLI
+      shell: cat /vagrant/3code/table1.txt | simple_switch_CLI
     
     - name: Insert general configs, mirroring and queues
-      shell: cat /vagrant/2code/general_config.txt | simple_switch_CLI
+      shell: cat /vagrant/3code/general_config.txt | simple_switch_CLI
     
     - name: Disable offloading features on enp0s9
       command: ethtool --offload enp0s9 gso off tso off gro off

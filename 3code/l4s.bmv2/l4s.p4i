@@ -1162,8 +1162,12 @@ control MyEgress(inout headers hdr,
     register<bit<32>>(8) QueueID;
     register<bit<16>>(10) dropProbability;
     register<bit<32>>(10) QDelay_reg;
+    register<bit<32>>(4) queue_ewma_classic; // EWMA da fila 0 por porta ativa
+    register<bit<32>>(4) queue_ewma_l4s; // EWMA da fila 7 por porta ativa
+
     counter(4, CounterType.packets) recirc;
     counter(4, CounterType.packets) cloneCount;
+    counter(10, CounterType.packets) ecnMarkedPkt;
 
     action recirculate_packet(){
         recirculate_preserving_field_list(0);
@@ -1194,6 +1198,15 @@ control MyEgress(inout headers hdr,
             // EWMA: Exponential Weighted Moving Average
             bit<32> EWMA = (qdelay>>1) + (previousQDelay>>1);
             QDelay_reg.write((bit<32>)standard_metadata.egress_port, EWMA);
+            if (standard_metadata.egress_port == 3) {
+                if (standard_metadata.qid == 0) {
+                    // Fila 0 (Classic) da porta 3 → índice 0
+                    queue_ewma_classic.write(0, EWMA);
+                } else if (standard_metadata.qid == 7) {
+                    // Fila 7 (L4S) da porta 3 → índice 0
+                    queue_ewma_l4s.write(0, EWMA);
+                }
+            }
 
             // Classificar nível de congestionamento
             bit<8> target_violation = 0; // Inicializar com valor padrão
@@ -1236,6 +1249,7 @@ control MyEgress(inout headers hdr,
                     // Marcar ECN (Congestion Experienced)
                     if (mark_decision_l4s == true){
                         hdr.ipv4.ecn = 3;
+                        ecnMarkedPkt.count((bit<32>)standard_metadata.egress_port);
                     }
                 }
                 // ========== TRÁFEGO CLASSIC: DROP PROBABILÍSTICO ==========

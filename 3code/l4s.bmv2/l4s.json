@@ -24,16 +24,19 @@
         ["tmp_12", 32, false],
         ["tmp_13", 32, false],
         ["tmp_14", 32, false],
-        ["tmp_15", 16, false],
+        ["tmp_15", 32, false],
         ["tmp_16", 32, false],
         ["tmp_17", 16, false],
         ["tmp_18", 32, false],
-        ["tmp_19", 32, false],
-        ["tmp_20", 16, false],
+        ["tmp_19", 16, false],
+        ["tmp_20", 32, false],
         ["tmp_21", 32, false],
-        ["tmp_22", 16, false],
-        ["tmp_23", 32, false],
+        ["tmp_22", 32, false],
+        ["tmp_23", 16, false],
         ["tmp_24", 32, false],
+        ["tmp_25", 16, false],
+        ["tmp_26", 32, false],
+        ["tmp_27", 32, false],
         ["previousQDelay_0", 32, false],
         ["target_violation_0", 8, false],
         ["rand_classic_0", 16, false],
@@ -288,7 +291,7 @@
       "id" : 0,
       "source_info" : {
         "filename" : "/vagrant/3code/l4s.p4",
-        "line" : 425,
+        "line" : 439,
         "column" : 8,
         "source_fragment" : "MyDeparser"
       },
@@ -339,7 +342,7 @@
       "id" : 3,
       "source_info" : {
         "filename" : "/vagrant/3code/l4s.p4",
-        "line" : 280,
+        "line" : 283,
         "column" : 36,
         "source_fragment" : "recirc"
       },
@@ -351,11 +354,23 @@
       "id" : 4,
       "source_info" : {
         "filename" : "/vagrant/3code/l4s.p4",
-        "line" : 281,
+        "line" : 284,
         "column" : 36,
         "source_fragment" : "cloneCount"
       },
       "size" : 4,
+      "is_direct" : false
+    },
+    {
+      "name" : "MyEgress.ecnMarkedPkt",
+      "id" : 5,
+      "source_info" : {
+        "filename" : "/vagrant/3code/l4s.p4",
+        "line" : 285,
+        "column" : 37,
+        "source_fragment" : "ecnMarkedPkt"
+      },
+      "size" : 10,
       "is_direct" : false
     }
   ],
@@ -515,6 +530,30 @@
       },
       "size" : 10,
       "bitwidth" : 32
+    },
+    {
+      "name" : "MyEgress.queue_ewma_classic",
+      "id" : 13,
+      "source_info" : {
+        "filename" : "/vagrant/3code/l4s.p4",
+        "line" : 280,
+        "column" : 25,
+        "source_fragment" : "queue_ewma_classic"
+      },
+      "size" : 4,
+      "bitwidth" : 32
+    },
+    {
+      "name" : "MyEgress.queue_ewma_l4s",
+      "id" : 14,
+      "source_info" : {
+        "filename" : "/vagrant/3code/l4s.p4",
+        "line" : 281,
+        "column" : 25,
+        "source_fragment" : "queue_ewma_l4s"
+      },
+      "size" : 4,
+      "bitwidth" : 32
     }
   ],
   "calculations" : [
@@ -550,7 +589,7 @@
       "id" : 1,
       "source_info" : {
         "filename" : "/vagrant/3code/l4s.p4",
-        "line" : 401,
+        "line" : 415,
         "column" : 8,
         "source_fragment" : "update_checksum( ..."
       },
@@ -1748,7 +1787,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 284,
+            "line" : 288,
             "column" : 8,
             "source_fragment" : "recirculate_preserving_field_list(0)"
           }
@@ -1767,7 +1806,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 285,
+            "line" : 289,
             "column" : 8,
             "source_fragment" : "recirc.count(meta.queue_metadata.output_port)"
           }
@@ -1793,7 +1832,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 289,
+            "line" : 293,
             "column" : 8,
             "source_fragment" : "clone_preserving_field_list(CloneType.E2E, meta.queue_metadata.output_port, 0)"
           }
@@ -1812,7 +1851,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 290,
+            "line" : 294,
             "column" : 8,
             "source_fragment" : "cloneCount.count(meta.queue_metadata.output_port)"
           }
@@ -1838,7 +1877,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 289,
+            "line" : 293,
             "column" : 8,
             "source_fragment" : "clone_preserving_field_list(CloneType.E2E, meta.queue_metadata.output_port, 0)"
           }
@@ -1857,7 +1896,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 290,
+            "line" : 294,
             "column" : 8,
             "source_fragment" : "cloneCount.count(meta.queue_metadata.output_port)"
           }
@@ -1865,7 +1904,7 @@
       ]
     },
     {
-      "name" : "l4s299",
+      "name" : "l4s303",
       "id" : 18,
       "runtime_data" : [],
       "primitives" : [
@@ -1896,7 +1935,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 299,
+            "line" : 303,
             "column" : 12,
             "source_fragment" : "meta.queue_metadata.output_port = (bit<32>)standard_metadata.egress_port"
           }
@@ -1904,7 +1943,7 @@
       ]
     },
     {
-      "name" : "l4s317",
+      "name" : "l4s319",
       "id" : 19,
       "runtime_data" : [],
       "primitives" : [
@@ -1913,172 +1952,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "target_violation_0"]
-            },
-            {
-              "type" : "hexstr",
-              "value" : "0x00"
-            }
-          ],
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 317,
-            "column" : 16,
-            "source_fragment" : "target_violation = 0"
-          }
-        }
-      ]
-    },
-    {
-      "name" : "l4s320",
-      "id" : 20,
-      "runtime_data" : [],
-      "primitives" : [
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "target_violation_0"]
-            },
-            {
-              "type" : "hexstr",
-              "value" : "0x01"
-            }
-          ],
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 320,
-            "column" : 16,
-            "source_fragment" : "target_violation = 1"
-          }
-        }
-      ]
-    },
-    {
-      "name" : "l4s323",
-      "id" : 21,
-      "runtime_data" : [],
-      "primitives" : [
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "target_violation_0"]
-            },
-            {
-              "type" : "hexstr",
-              "value" : "0x02"
-            }
-          ],
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 323,
-            "column" : 16,
-            "source_fragment" : "target_violation = 2"
-          }
-        }
-      ]
-    },
-    {
-      "name" : "l4s307",
-      "id" : 22,
-      "runtime_data" : [],
-      "primitives" : [
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
               "value" : ["scalars", "tmp_11"]
-            },
-            {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "field",
-                    "value" : ["standard_metadata", "egress_port"]
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffffffff"
-                  }
-                }
-              }
-            }
-          ],
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 307,
-            "column" : 44,
-            "source_fragment" : "(bit<32>)standard_metadata.egress_port"
-          }
-        },
-        {
-          "op" : "register_read",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "previousQDelay_0"]
-            },
-            {
-              "type" : "register_array",
-              "value" : "MyEgress.QDelay_reg"
-            },
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_11"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 307,
-            "column" : 12,
-            "source_fragment" : "QDelay_reg.read(previousQDelay, (bit<32>)standard_metadata.egress_port)"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_12"]
-            },
-            {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "field",
-                    "value" : ["standard_metadata", "egress_port"]
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffffffff"
-                  }
-                }
-              }
-            }
-          ],
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 311,
-            "column" : 29,
-            "source_fragment" : "(bit<32>)standard_metadata.egress_port"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_13"]
             },
             {
               "type" : "expression",
@@ -2150,7 +2024,318 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 319,
+            "column" : 48,
+            "source_fragment" : "EWMA"
+          }
+        },
+        {
+          "op" : "register_write",
+          "parameters" : [
+            {
+              "type" : "register_array",
+              "value" : "MyEgress.queue_ewma_classic"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00000000"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_11"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 319,
+            "column" : 20,
+            "source_fragment" : "queue_ewma_classic.write(0, EWMA)"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "l4s322",
+      "id" : 20,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_12"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "+",
+                      "left" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "&",
+                          "left" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : ">>",
+                              "left" : {
+                                "type" : "field",
+                                "value" : ["standard_metadata", "deq_timedelta"]
+                              },
+                              "right" : {
+                                "type" : "hexstr",
+                                "value" : "0x1"
+                              }
+                            }
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0xffffffff"
+                          }
+                        }
+                      },
+                      "right" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "&",
+                          "left" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : ">>",
+                              "left" : {
+                                "type" : "field",
+                                "value" : ["scalars", "previousQDelay_0"]
+                              },
+                              "right" : {
+                                "type" : "hexstr",
+                                "value" : "0x1"
+                              }
+                            }
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0xffffffff"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 322,
+            "column" : 44,
+            "source_fragment" : "EWMA"
+          }
+        },
+        {
+          "op" : "register_write",
+          "parameters" : [
+            {
+              "type" : "register_array",
+              "value" : "MyEgress.queue_ewma_l4s"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00000000"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_12"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 322,
+            "column" : 20,
+            "source_fragment" : "queue_ewma_l4s.write(0, EWMA)"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "l4s311",
+      "id" : 21,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_13"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "field",
+                    "value" : ["standard_metadata", "egress_port"]
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
             "line" : 311,
+            "column" : 44,
+            "source_fragment" : "(bit<32>)standard_metadata.egress_port"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "previousQDelay_0"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyEgress.QDelay_reg"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_13"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 311,
+            "column" : 12,
+            "source_fragment" : "QDelay_reg.read(previousQDelay, (bit<32>)standard_metadata.egress_port)"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_14"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "field",
+                    "value" : ["standard_metadata", "egress_port"]
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 315,
+            "column" : 29,
+            "source_fragment" : "(bit<32>)standard_metadata.egress_port"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_15"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "+",
+                      "left" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "&",
+                          "left" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : ">>",
+                              "left" : {
+                                "type" : "field",
+                                "value" : ["standard_metadata", "deq_timedelta"]
+                              },
+                              "right" : {
+                                "type" : "hexstr",
+                                "value" : "0x1"
+                              }
+                            }
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0xffffffff"
+                          }
+                        }
+                      },
+                      "right" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "&",
+                          "left" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : ">>",
+                              "left" : {
+                                "type" : "field",
+                                "value" : ["scalars", "previousQDelay_0"]
+                              },
+                              "right" : {
+                                "type" : "hexstr",
+                                "value" : "0x1"
+                              }
+                            }
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0xffffffff"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 315,
             "column" : 69,
             "source_fragment" : "EWMA"
           }
@@ -2164,20 +2349,27 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_12"]
+              "value" : ["scalars", "tmp_14"]
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_13"]
+              "value" : ["scalars", "tmp_15"]
             }
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 311,
+            "line" : 315,
             "column" : 12,
             "source_fragment" : "QDelay_reg.write((bit<32>)standard_metadata.egress_port, EWMA)"
           }
-        },
+        }
+      ]
+    },
+    {
+      "name" : "l4s330",
+      "id" : 22,
+      "runtime_data" : [],
+      "primitives" : [
         {
           "op" : "assign",
           "parameters" : [
@@ -2192,15 +2384,15 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 314,
-            "column" : 12,
-            "source_fragment" : "bit<8> target_violation = 0"
+            "line" : 330,
+            "column" : 16,
+            "source_fragment" : "target_violation = 0"
           }
         }
       ]
     },
     {
-      "name" : "l4s343",
+      "name" : "l4s333",
       "id" : 23,
       "runtime_data" : [],
       "primitives" : [
@@ -2209,131 +2401,24 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_14"]
+              "value" : ["scalars", "target_violation_0"]
             },
             {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "field",
-                    "value" : ["standard_metadata", "egress_port"]
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffffffff"
-                  }
-                }
-              }
+              "type" : "hexstr",
+              "value" : "0x01"
             }
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 343,
-            "column" : 46,
-            "source_fragment" : "(bit<32>)standard_metadata.egress_port"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_15"]
-            },
-            {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "expression",
-                    "value" : {
-                      "op" : "+",
-                      "left" : {
-                        "type" : "field",
-                        "value" : ["scalars", "dropProb_0"]
-                      },
-                      "right" : {
-                        "type" : "hexstr",
-                        "value" : "0xffff"
-                      }
-                    }
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffff"
-                  }
-                }
-              }
-            }
-          ],
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 343,
-            "column" : 86,
-            "source_fragment" : "dropProb_temp"
-          }
-        },
-        {
-          "op" : "register_write",
-          "parameters" : [
-            {
-              "type" : "register_array",
-              "value" : "MyEgress.dropProbability"
-            },
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_14"]
-            },
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_15"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 343,
-            "column" : 24,
-            "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp)"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "mark_decision_l4s_0"]
-            },
-            {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "b2d",
-                  "left" : null,
-                  "right" : {
-                    "type" : "bool",
-                    "value" : true
-                  }
-                }
-              }
-            }
-          ],
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 344,
-            "column" : 24,
-            "source_fragment" : "mark_decision_l4s = true"
+            "line" : 333,
+            "column" : 16,
+            "source_fragment" : "target_violation = 1"
           }
         }
       ]
     },
     {
-      "name" : "l4s347",
+      "name" : "l4s336",
       "id" : 24,
       "runtime_data" : [],
       "primitives" : [
@@ -2342,131 +2427,24 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_16"]
+              "value" : ["scalars", "target_violation_0"]
             },
             {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "field",
-                    "value" : ["standard_metadata", "egress_port"]
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffffffff"
-                  }
-                }
-              }
+              "type" : "hexstr",
+              "value" : "0x02"
             }
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 347,
-            "column" : 46,
-            "source_fragment" : "(bit<32>)standard_metadata.egress_port"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_17"]
-            },
-            {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "expression",
-                    "value" : {
-                      "op" : "+",
-                      "left" : {
-                        "type" : "field",
-                        "value" : ["scalars", "dropProb_0"]
-                      },
-                      "right" : {
-                        "type" : "hexstr",
-                        "value" : "0x0001"
-                      }
-                    }
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffff"
-                  }
-                }
-              }
-            }
-          ],
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 347,
-            "column" : 86,
-            "source_fragment" : "dropProb_temp"
-          }
-        },
-        {
-          "op" : "register_write",
-          "parameters" : [
-            {
-              "type" : "register_array",
-              "value" : "MyEgress.dropProbability"
-            },
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_16"]
-            },
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_17"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 347,
-            "column" : 24,
-            "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp)"
-          }
-        },
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "mark_decision_l4s_0"]
-            },
-            {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "b2d",
-                  "left" : null,
-                  "right" : {
-                    "type" : "bool",
-                    "value" : false
-                  }
-                }
-              }
-            }
-          ],
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 348,
-            "column" : 24,
-            "source_fragment" : "mark_decision_l4s = false"
+            "line" : 336,
+            "column" : 16,
+            "source_fragment" : "target_violation = 2"
           }
         }
       ]
     },
     {
-      "name" : "l4s338",
+      "name" : "l4s327",
       "id" : 25,
       "runtime_data" : [],
       "primitives" : [
@@ -2475,60 +2453,24 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_18"]
+              "value" : ["scalars", "target_violation_0"]
             },
             {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "field",
-                    "value" : ["standard_metadata", "egress_port"]
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffffffff"
-                  }
-                }
-              }
+              "type" : "hexstr",
+              "value" : "0x00"
             }
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 338,
-            "column" : 51,
-            "source_fragment" : "(bit<32>)standard_metadata.egress_port"
-          }
-        },
-        {
-          "op" : "register_read",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "dropProb_0"]
-            },
-            {
-              "type" : "register_array",
-              "value" : "MyEgress.dropProbability"
-            },
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_18"]
-            }
-          ],
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 338,
-            "column" : 20,
-            "source_fragment" : "dropProbability.read(dropProb, (bit<32>)standard_metadata.egress_port)"
+            "line" : 327,
+            "column" : 12,
+            "source_fragment" : "bit<8> target_violation = 0"
           }
         }
       ]
     },
     {
-      "name" : "l4s353",
+      "name" : "l4s356",
       "id" : 26,
       "runtime_data" : [],
       "primitives" : [
@@ -2537,33 +2479,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["ipv4", "ecn"]
-            },
-            {
-              "type" : "hexstr",
-              "value" : "0x03"
-            }
-          ],
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 353,
-            "column" : 24,
-            "source_fragment" : "hdr.ipv4.ecn = 3"
-          }
-        }
-      ]
-    },
-    {
-      "name" : "l4s364",
-      "id" : 27,
-      "runtime_data" : [],
-      "primitives" : [
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "tmp_19"]
+              "value" : ["scalars", "tmp_16"]
             },
             {
               "type" : "expression",
@@ -2585,7 +2501,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 364,
+            "line" : 356,
             "column" : 46,
             "source_fragment" : "(bit<32>)standard_metadata.egress_port"
           }
@@ -2595,7 +2511,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_20"]
+              "value" : ["scalars", "tmp_17"]
             },
             {
               "type" : "expression",
@@ -2627,7 +2543,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 364,
+            "line" : 356,
             "column" : 86,
             "source_fragment" : "dropProb_temp"
           }
@@ -2641,16 +2557,16 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_19"]
+              "value" : ["scalars", "tmp_16"]
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_20"]
+              "value" : ["scalars", "tmp_17"]
             }
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 364,
+            "line" : 356,
             "column" : 24,
             "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp)"
           }
@@ -2660,7 +2576,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "drop_decision_classic_0"]
+              "value" : ["scalars", "mark_decision_l4s_0"]
             },
             {
               "type" : "expression",
@@ -2679,16 +2595,16 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 365,
+            "line" : 357,
             "column" : 24,
-            "source_fragment" : "drop_decision_classic = true"
+            "source_fragment" : "mark_decision_l4s = true"
           }
         }
       ]
     },
     {
-      "name" : "l4s368",
-      "id" : 28,
+      "name" : "l4s360",
+      "id" : 27,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -2696,7 +2612,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_21"]
+              "value" : ["scalars", "tmp_18"]
             },
             {
               "type" : "expression",
@@ -2718,7 +2634,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 368,
+            "line" : 360,
             "column" : 46,
             "source_fragment" : "(bit<32>)standard_metadata.egress_port"
           }
@@ -2728,7 +2644,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_22"]
+              "value" : ["scalars", "tmp_19"]
             },
             {
               "type" : "expression",
@@ -2760,7 +2676,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 368,
+            "line" : 360,
             "column" : 86,
             "source_fragment" : "dropProb_temp"
           }
@@ -2774,16 +2690,421 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_21"]
+              "value" : ["scalars", "tmp_18"]
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_22"]
+              "value" : ["scalars", "tmp_19"]
             }
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 368,
+            "line" : 360,
+            "column" : 24,
+            "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp)"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "mark_decision_l4s_0"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "b2d",
+                  "left" : null,
+                  "right" : {
+                    "type" : "bool",
+                    "value" : false
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 361,
+            "column" : 24,
+            "source_fragment" : "mark_decision_l4s = false"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "l4s351",
+      "id" : 28,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_20"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "field",
+                    "value" : ["standard_metadata", "egress_port"]
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 351,
+            "column" : 51,
+            "source_fragment" : "(bit<32>)standard_metadata.egress_port"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "dropProb_0"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyEgress.dropProbability"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_20"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 351,
+            "column" : 20,
+            "source_fragment" : "dropProbability.read(dropProb, (bit<32>)standard_metadata.egress_port)"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "l4s366",
+      "id" : 29,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["ipv4", "ecn"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x03"
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 366,
+            "column" : 24,
+            "source_fragment" : "hdr.ipv4.ecn = 3"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_21"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "field",
+                    "value" : ["standard_metadata", "egress_port"]
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 367,
+            "column" : 43,
+            "source_fragment" : "(bit<32>)standard_metadata.egress_port"
+          }
+        },
+        {
+          "op" : "count",
+          "parameters" : [
+            {
+              "type" : "counter_array",
+              "value" : "MyEgress.ecnMarkedPkt"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_21"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 367,
+            "column" : 24,
+            "source_fragment" : "ecnMarkedPkt.count((bit<32>)standard_metadata.egress_port)"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "l4s378",
+      "id" : 30,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_22"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "field",
+                    "value" : ["standard_metadata", "egress_port"]
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 378,
+            "column" : 46,
+            "source_fragment" : "(bit<32>)standard_metadata.egress_port"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_23"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "+",
+                      "left" : {
+                        "type" : "field",
+                        "value" : ["scalars", "dropProb_0"]
+                      },
+                      "right" : {
+                        "type" : "hexstr",
+                        "value" : "0xffff"
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 378,
+            "column" : 86,
+            "source_fragment" : "dropProb_temp"
+          }
+        },
+        {
+          "op" : "register_write",
+          "parameters" : [
+            {
+              "type" : "register_array",
+              "value" : "MyEgress.dropProbability"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_22"]
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_23"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 378,
+            "column" : 24,
+            "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp)"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "drop_decision_classic_0"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "b2d",
+                  "left" : null,
+                  "right" : {
+                    "type" : "bool",
+                    "value" : true
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 379,
+            "column" : 24,
+            "source_fragment" : "drop_decision_classic = true"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "l4s382",
+      "id" : 31,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_24"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "field",
+                    "value" : ["standard_metadata", "egress_port"]
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 382,
+            "column" : 46,
+            "source_fragment" : "(bit<32>)standard_metadata.egress_port"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_25"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "+",
+                      "left" : {
+                        "type" : "field",
+                        "value" : ["scalars", "dropProb_0"]
+                      },
+                      "right" : {
+                        "type" : "hexstr",
+                        "value" : "0x0001"
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 382,
+            "column" : 86,
+            "source_fragment" : "dropProb_temp"
+          }
+        },
+        {
+          "op" : "register_write",
+          "parameters" : [
+            {
+              "type" : "register_array",
+              "value" : "MyEgress.dropProbability"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_24"]
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_25"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 382,
             "column" : 24,
             "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp)"
           }
@@ -2812,7 +3133,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 369,
+            "line" : 383,
             "column" : 24,
             "source_fragment" : "drop_decision_classic = false"
           }
@@ -2820,8 +3141,8 @@
       ]
     },
     {
-      "name" : "l4s359",
-      "id" : 29,
+      "name" : "l4s373",
+      "id" : 32,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -2829,7 +3150,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_23"]
+              "value" : ["scalars", "tmp_26"]
             },
             {
               "type" : "expression",
@@ -2851,7 +3172,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 359,
+            "line" : 373,
             "column" : 51,
             "source_fragment" : "(bit<32>)standard_metadata.egress_port"
           }
@@ -2869,12 +3190,12 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_23"]
+              "value" : ["scalars", "tmp_26"]
             }
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 359,
+            "line" : 373,
             "column" : 20,
             "source_fragment" : "dropProbability.read(dropProb, (bit<32>)standard_metadata.egress_port)"
           }
@@ -2882,102 +3203,7 @@
       ]
     },
     {
-      "name" : "l4s374",
-      "id" : 30,
-      "runtime_data" : [],
-      "primitives" : [
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "metadata._queue_metadata_output_port0"]
-            },
-            {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "field",
-                    "value" : ["standard_metadata", "egress_port"]
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffffffff"
-                  }
-                }
-              }
-            }
-          ],
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 374,
-            "column" : 24,
-            "source_fragment" : "meta.queue_metadata.output_port = (bit<32>)standard_metadata.egress_port"
-          }
-        }
-      ]
-    },
-    {
-      "name" : "l4s330",
-      "id" : 31,
-      "runtime_data" : [],
-      "primitives" : [
-        {
-          "op" : "modify_field_rng_uniform",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["scalars", "rand_classic_0"]
-            },
-            {
-              "type" : "hexstr",
-              "value" : "0x0000"
-            },
-            {
-              "type" : "hexstr",
-              "value" : "0xffff"
-            }
-          ],
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 330,
-            "column" : 16,
-            "source_fragment" : "random(rand_classic, 0, 65535)"
-          }
-        }
-      ]
-    },
-    {
-      "name" : "l4s383",
-      "id" : 32,
-      "runtime_data" : [],
-      "primitives" : [
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["ipv4", "ecn"]
-            },
-            {
-              "type" : "hexstr",
-              "value" : "0x03"
-            }
-          ],
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 383,
-            "column" : 20,
-            "source_fragment" : "hdr.ipv4.ecn = 3"
-          }
-        }
-      ]
-    },
-    {
-      "name" : "l4s387",
+      "name" : "l4s388",
       "id" : 33,
       "runtime_data" : [],
       "primitives" : [
@@ -3008,16 +3234,46 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 387,
-            "column" : 20,
+            "line" : 388,
+            "column" : 24,
             "source_fragment" : "meta.queue_metadata.output_port = (bit<32>)standard_metadata.egress_port"
           }
         }
       ]
     },
     {
-      "name" : "l4s295",
+      "name" : "l4s343",
       "id" : 34,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "modify_field_rng_uniform",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "rand_classic_0"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x0000"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0xffff"
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 343,
+            "column" : 16,
+            "source_fragment" : "random(rand_classic, 0, 65535)"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "l4s397",
+      "id" : 35,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -3025,7 +3281,72 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_24"]
+              "value" : ["ipv4", "ecn"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x03"
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 397,
+            "column" : 20,
+            "source_fragment" : "hdr.ipv4.ecn = 3"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "l4s401",
+      "id" : 36,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "metadata._queue_metadata_output_port0"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "field",
+                    "value" : ["standard_metadata", "egress_port"]
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 401,
+            "column" : 20,
+            "source_fragment" : "meta.queue_metadata.output_port = (bit<32>)standard_metadata.egress_port"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "l4s299",
+      "id" : 37,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_27"]
             },
             {
               "type" : "expression",
@@ -3047,7 +3368,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 295,
+            "line" : 299,
             "column" : 22,
             "source_fragment" : "(bit<32>)standard_metadata.qid"
           }
@@ -3061,7 +3382,7 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_24"]
+              "value" : ["scalars", "tmp_27"]
             },
             {
               "type" : "hexstr",
@@ -3070,7 +3391,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 295,
+            "line" : 299,
             "column" : 8,
             "source_fragment" : "QueueID.write((bit<32>)standard_metadata.qid, 1)"
           }
@@ -3709,14 +4030,14 @@
         "column" : 8,
         "source_fragment" : "MyEgress"
       },
-      "init_table" : "tbl_l4s295",
+      "init_table" : "tbl_l4s299",
       "tables" : [
         {
-          "name" : "tbl_l4s295",
+          "name" : "tbl_l4s299",
           "id" : 13,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 295,
+            "line" : 299,
             "column" : 8,
             "source_fragment" : "QueueID.write((bit<32>)standard_metadata.qid, 1)"
           },
@@ -3727,25 +4048,25 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [34],
-          "actions" : ["l4s295"],
+          "action_ids" : [37],
+          "actions" : ["l4s299"],
           "base_default_next" : "node_26",
           "next_tables" : {
-            "l4s295" : "node_26"
+            "l4s299" : "node_26"
           },
           "default_entry" : {
-            "action_id" : 34,
+            "action_id" : 37,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
           }
         },
         {
-          "name" : "tbl_l4s299",
+          "name" : "tbl_l4s303",
           "id" : 14,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 299,
+            "line" : 303,
             "column" : 44,
             "source_fragment" : "="
           },
@@ -3757,10 +4078,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [18],
-          "actions" : ["l4s299"],
+          "actions" : ["l4s303"],
           "base_default_next" : "tbl_recirculate_packet",
           "next_tables" : {
-            "l4s299" : "tbl_recirculate_packet"
+            "l4s303" : "tbl_recirculate_packet"
           },
           "default_entry" : {
             "action_id" : 18,
@@ -3774,7 +4095,7 @@
           "id" : 15,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 300,
+            "line" : 304,
             "column" : 12,
             "source_fragment" : "recirculate_packet()"
           },
@@ -3799,11 +4120,11 @@
           }
         },
         {
-          "name" : "tbl_l4s307",
+          "name" : "tbl_l4s311",
           "id" : 16,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 307,
+            "line" : 311,
             "column" : 12,
             "source_fragment" : "QDelay_reg.read(previousQDelay, (bit<32>)standard_metadata.egress_port); ..."
           },
@@ -3814,27 +4135,27 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [22],
-          "actions" : ["l4s307"],
+          "action_ids" : [21],
+          "actions" : ["l4s311"],
           "base_default_next" : "node_30",
           "next_tables" : {
-            "l4s307" : "node_30"
+            "l4s311" : "node_30"
           },
           "default_entry" : {
-            "action_id" : 22,
+            "action_id" : 21,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
           }
         },
         {
-          "name" : "tbl_l4s317",
+          "name" : "tbl_l4s319",
           "id" : 17,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 317,
-            "column" : 33,
-            "source_fragment" : "="
+            "line" : 319,
+            "column" : 20,
+            "source_fragment" : "queue_ewma_classic.write(0, EWMA)"
           },
           "key" : [],
           "match_type" : "exact",
@@ -3844,10 +4165,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [19],
-          "actions" : ["l4s317"],
-          "base_default_next" : "node_36",
+          "actions" : ["l4s319"],
+          "base_default_next" : "tbl_l4s327",
           "next_tables" : {
-            "l4s317" : "node_36"
+            "l4s319" : "tbl_l4s327"
           },
           "default_entry" : {
             "action_id" : 19,
@@ -3857,13 +4178,13 @@
           }
         },
         {
-          "name" : "tbl_l4s320",
+          "name" : "tbl_l4s322",
           "id" : 18,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 320,
-            "column" : 33,
-            "source_fragment" : "="
+            "line" : 322,
+            "column" : 20,
+            "source_fragment" : "queue_ewma_l4s.write(0, EWMA)"
           },
           "key" : [],
           "match_type" : "exact",
@@ -3873,10 +4194,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [20],
-          "actions" : ["l4s320"],
-          "base_default_next" : "node_36",
+          "actions" : ["l4s322"],
+          "base_default_next" : "tbl_l4s327",
           "next_tables" : {
-            "l4s320" : "node_36"
+            "l4s322" : "tbl_l4s327"
           },
           "default_entry" : {
             "action_id" : 20,
@@ -3886,13 +4207,13 @@
           }
         },
         {
-          "name" : "tbl_l4s323",
+          "name" : "tbl_l4s327",
           "id" : 19,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 323,
-            "column" : 33,
-            "source_fragment" : "="
+            "line" : 327,
+            "column" : 12,
+            "source_fragment" : "bit<8> target_violation = 0"
           },
           "key" : [],
           "match_type" : "exact",
@@ -3901,14 +4222,14 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [21],
-          "actions" : ["l4s323"],
+          "action_ids" : [25],
+          "actions" : ["l4s327"],
           "base_default_next" : "node_36",
           "next_tables" : {
-            "l4s323" : "node_36"
+            "l4s327" : "node_36"
           },
           "default_entry" : {
-            "action_id" : 21,
+            "action_id" : 25,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
@@ -3920,6 +4241,93 @@
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
             "line" : 330,
+            "column" : 33,
+            "source_fragment" : "="
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [22],
+          "actions" : ["l4s330"],
+          "base_default_next" : "node_42",
+          "next_tables" : {
+            "l4s330" : "node_42"
+          },
+          "default_entry" : {
+            "action_id" : 22,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s333",
+          "id" : 21,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 333,
+            "column" : 33,
+            "source_fragment" : "="
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [23],
+          "actions" : ["l4s333"],
+          "base_default_next" : "node_42",
+          "next_tables" : {
+            "l4s333" : "node_42"
+          },
+          "default_entry" : {
+            "action_id" : 23,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s336",
+          "id" : 22,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 336,
+            "column" : 33,
+            "source_fragment" : "="
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [24],
+          "actions" : ["l4s336"],
+          "base_default_next" : "node_42",
+          "next_tables" : {
+            "l4s336" : "node_42"
+          },
+          "default_entry" : {
+            "action_id" : 24,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s343",
+          "id" : 23,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 343,
             "column" : 16,
             "source_fragment" : "random(rand_classic, 0, 65535)"
           },
@@ -3930,25 +4338,25 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [31],
-          "actions" : ["l4s330"],
-          "base_default_next" : "node_38",
+          "action_ids" : [34],
+          "actions" : ["l4s343"],
+          "base_default_next" : "node_44",
           "next_tables" : {
-            "l4s330" : "node_38"
+            "l4s343" : "node_44"
           },
           "default_entry" : {
-            "action_id" : 31,
+            "action_id" : 34,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
           }
         },
         {
-          "name" : "tbl_l4s338",
-          "id" : 21,
+          "name" : "tbl_l4s351",
+          "id" : 24,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 338,
+            "line" : 351,
             "column" : 20,
             "source_fragment" : "dropProbability.read(dropProb, (bit<32>)standard_metadata.egress_port)"
           },
@@ -3959,85 +4367,27 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [25],
-          "actions" : ["l4s338"],
-          "base_default_next" : "node_40",
+          "action_ids" : [28],
+          "actions" : ["l4s351"],
+          "base_default_next" : "node_46",
           "next_tables" : {
-            "l4s338" : "node_40"
+            "l4s351" : "node_46"
           },
           "default_entry" : {
-            "action_id" : 25,
+            "action_id" : 28,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
           }
         },
         {
-          "name" : "tbl_l4s343",
-          "id" : 22,
+          "name" : "tbl_l4s356",
+          "id" : 25,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 343,
+            "line" : 356,
             "column" : 24,
             "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp); ..."
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [23],
-          "actions" : ["l4s343"],
-          "base_default_next" : "node_43",
-          "next_tables" : {
-            "l4s343" : "node_43"
-          },
-          "default_entry" : {
-            "action_id" : 23,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_l4s347",
-          "id" : 23,
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 347,
-            "column" : 24,
-            "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp); ..."
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [24],
-          "actions" : ["l4s347"],
-          "base_default_next" : "node_43",
-          "next_tables" : {
-            "l4s347" : "node_43"
-          },
-          "default_entry" : {
-            "action_id" : 24,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_l4s353",
-          "id" : 24,
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 353,
-            "column" : 37,
-            "source_fragment" : "="
           },
           "key" : [],
           "match_type" : "exact",
@@ -4047,10 +4397,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [26],
-          "actions" : ["l4s353"],
-          "base_default_next" : null,
+          "actions" : ["l4s356"],
+          "base_default_next" : "node_49",
           "next_tables" : {
-            "l4s353" : null
+            "l4s356" : "node_49"
           },
           "default_entry" : {
             "action_id" : 26,
@@ -4060,40 +4410,11 @@
           }
         },
         {
-          "name" : "tbl_l4s359",
-          "id" : 25,
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 359,
-            "column" : 20,
-            "source_fragment" : "dropProbability.read(dropProb, (bit<32>)standard_metadata.egress_port)"
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [29],
-          "actions" : ["l4s359"],
-          "base_default_next" : "node_46",
-          "next_tables" : {
-            "l4s359" : "node_46"
-          },
-          "default_entry" : {
-            "action_id" : 29,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_l4s364",
+          "name" : "tbl_l4s360",
           "id" : 26,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 364,
+            "line" : 360,
             "column" : 24,
             "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp); ..."
           },
@@ -4105,10 +4426,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [27],
-          "actions" : ["l4s364"],
+          "actions" : ["l4s360"],
           "base_default_next" : "node_49",
           "next_tables" : {
-            "l4s364" : "node_49"
+            "l4s360" : "node_49"
           },
           "default_entry" : {
             "action_id" : 27,
@@ -4118,11 +4439,69 @@
           }
         },
         {
-          "name" : "tbl_l4s368",
+          "name" : "tbl_l4s366",
           "id" : 27,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 368,
+            "line" : 366,
+            "column" : 37,
+            "source_fragment" : "= 3; ..."
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [29],
+          "actions" : ["l4s366"],
+          "base_default_next" : null,
+          "next_tables" : {
+            "l4s366" : null
+          },
+          "default_entry" : {
+            "action_id" : 29,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s373",
+          "id" : 28,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 373,
+            "column" : 20,
+            "source_fragment" : "dropProbability.read(dropProb, (bit<32>)standard_metadata.egress_port)"
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [32],
+          "actions" : ["l4s373"],
+          "base_default_next" : "node_52",
+          "next_tables" : {
+            "l4s373" : "node_52"
+          },
+          "default_entry" : {
+            "action_id" : 32,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s378",
+          "id" : 29,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 378,
             "column" : 24,
             "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp); ..."
           },
@@ -4133,25 +4512,54 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [28],
-          "actions" : ["l4s368"],
-          "base_default_next" : "node_49",
+          "action_ids" : [30],
+          "actions" : ["l4s378"],
+          "base_default_next" : "node_55",
           "next_tables" : {
-            "l4s368" : "node_49"
+            "l4s378" : "node_55"
           },
           "default_entry" : {
-            "action_id" : 28,
+            "action_id" : 30,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
           }
         },
         {
-          "name" : "tbl_l4s374",
-          "id" : 28,
+          "name" : "tbl_l4s382",
+          "id" : 30,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 374,
+            "line" : 382,
+            "column" : 24,
+            "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp); ..."
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [31],
+          "actions" : ["l4s382"],
+          "base_default_next" : "node_55",
+          "next_tables" : {
+            "l4s382" : "node_55"
+          },
+          "default_entry" : {
+            "action_id" : 31,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s388",
+          "id" : 31,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 388,
             "column" : 56,
             "source_fragment" : "="
           },
@@ -4162,14 +4570,14 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [30],
-          "actions" : ["l4s374"],
+          "action_ids" : [33],
+          "actions" : ["l4s388"],
           "base_default_next" : "tbl_clonePacket",
           "next_tables" : {
-            "l4s374" : "tbl_clonePacket"
+            "l4s388" : "tbl_clonePacket"
           },
           "default_entry" : {
-            "action_id" : 30,
+            "action_id" : 33,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
@@ -4177,10 +4585,10 @@
         },
         {
           "name" : "tbl_clonePacket",
-          "id" : 29,
+          "id" : 32,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 375,
+            "line" : 389,
             "column" : 24,
             "source_fragment" : "clonePacket()"
           },
@@ -4205,11 +4613,11 @@
           }
         },
         {
-          "name" : "tbl_l4s383",
-          "id" : 30,
+          "name" : "tbl_l4s397",
+          "id" : 33,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 383,
+            "line" : 397,
             "column" : 33,
             "source_fragment" : "="
           },
@@ -4220,25 +4628,25 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [32],
-          "actions" : ["l4s383"],
+          "action_ids" : [35],
+          "actions" : ["l4s397"],
           "base_default_next" : null,
           "next_tables" : {
-            "l4s383" : null
+            "l4s397" : null
           },
           "default_entry" : {
-            "action_id" : 32,
+            "action_id" : 35,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
           }
         },
         {
-          "name" : "tbl_l4s387",
-          "id" : 31,
+          "name" : "tbl_l4s401",
+          "id" : 34,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 387,
+            "line" : 401,
             "column" : 52,
             "source_fragment" : "="
           },
@@ -4249,14 +4657,14 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [33],
-          "actions" : ["l4s387"],
+          "action_ids" : [36],
+          "actions" : ["l4s401"],
           "base_default_next" : "tbl_clonePacket_0",
           "next_tables" : {
-            "l4s387" : "tbl_clonePacket_0"
+            "l4s401" : "tbl_clonePacket_0"
           },
           "default_entry" : {
-            "action_id" : 33,
+            "action_id" : 36,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
@@ -4264,10 +4672,10 @@
         },
         {
           "name" : "tbl_clonePacket_0",
-          "id" : 32,
+          "id" : 35,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 388,
+            "line" : 402,
             "column" : 20,
             "source_fragment" : "clonePacket()"
           },
@@ -4299,7 +4707,7 @@
           "id" : 8,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 298,
+            "line" : 302,
             "column" : 12,
             "source_fragment" : "standard_metadata.instance_type == BMV2_V1MODEL_INSTANCE_TYPE_EGRESS_CLONE"
           },
@@ -4317,8 +4725,8 @@
               }
             }
           },
-          "true_next" : "tbl_l4s299",
-          "false_next" : "tbl_l4s307"
+          "true_next" : "tbl_l4s303",
+          "false_next" : "tbl_l4s311"
         },
         {
           "name" : "node_30",
@@ -4326,6 +4734,84 @@
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
             "line" : 316,
+            "column" : 16,
+            "source_fragment" : "standard_metadata.egress_port == 3"
+          },
+          "expression" : {
+            "type" : "expression",
+            "value" : {
+              "op" : "==",
+              "left" : {
+                "type" : "field",
+                "value" : ["standard_metadata", "egress_port"]
+              },
+              "right" : {
+                "type" : "hexstr",
+                "value" : "0x0003"
+              }
+            }
+          },
+          "true_next" : "node_31",
+          "false_next" : "tbl_l4s327"
+        },
+        {
+          "name" : "node_31",
+          "id" : 10,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 317,
+            "column" : 20,
+            "source_fragment" : "standard_metadata.qid == 0"
+          },
+          "expression" : {
+            "type" : "expression",
+            "value" : {
+              "op" : "==",
+              "left" : {
+                "type" : "field",
+                "value" : ["standard_metadata", "qid"]
+              },
+              "right" : {
+                "type" : "hexstr",
+                "value" : "0x00"
+              }
+            }
+          },
+          "true_next" : "tbl_l4s319",
+          "false_next" : "node_33"
+        },
+        {
+          "name" : "node_33",
+          "id" : 11,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 320,
+            "column" : 27,
+            "source_fragment" : "standard_metadata.qid == 7"
+          },
+          "expression" : {
+            "type" : "expression",
+            "value" : {
+              "op" : "==",
+              "left" : {
+                "type" : "field",
+                "value" : ["standard_metadata", "qid"]
+              },
+              "right" : {
+                "type" : "hexstr",
+                "value" : "0x07"
+              }
+            }
+          },
+          "true_next" : "tbl_l4s322",
+          "false_next" : "tbl_l4s327"
+        },
+        {
+          "name" : "node_36",
+          "id" : 12,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 329,
             "column" : 16,
             "source_fragment" : "EWMA <= TARGET_DELAY"
           },
@@ -4403,15 +4889,15 @@
               }
             }
           },
-          "true_next" : "tbl_l4s317",
-          "false_next" : "node_32"
+          "true_next" : "tbl_l4s330",
+          "false_next" : "node_38"
         },
         {
-          "name" : "node_32",
-          "id" : 10,
+          "name" : "node_38",
+          "id" : 13,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 319,
+            "line" : 332,
             "column" : 21,
             "source_fragment" : "(EWMA > TARGET_DELAY) && (EWMA < (TARGET_DELAY<<1))"
           },
@@ -4569,15 +5055,15 @@
               }
             }
           },
-          "true_next" : "tbl_l4s320",
-          "false_next" : "node_34"
+          "true_next" : "tbl_l4s333",
+          "false_next" : "node_40"
         },
         {
-          "name" : "node_34",
-          "id" : 11,
+          "name" : "node_40",
+          "id" : 14,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 322,
+            "line" : 335,
             "column" : 21,
             "source_fragment" : "EWMA >= (TARGET_DELAY<<1)"
           },
@@ -4655,15 +5141,15 @@
               }
             }
           },
-          "true_next" : "tbl_l4s323",
-          "false_next" : "node_36"
+          "true_next" : "tbl_l4s336",
+          "false_next" : "node_42"
         },
         {
-          "name" : "node_36",
-          "id" : 12,
+          "name" : "node_42",
+          "id" : 15,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 327,
+            "line" : 340,
             "column" : 16,
             "source_fragment" : "target_violation == 1"
           },
@@ -4681,15 +5167,15 @@
               }
             }
           },
-          "true_next" : "tbl_l4s330",
-          "false_next" : "node_52"
+          "true_next" : "tbl_l4s343",
+          "false_next" : "node_58"
         },
         {
-          "name" : "node_38",
-          "id" : 13,
+          "name" : "node_44",
+          "id" : 16,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 336,
+            "line" : 349,
             "column" : 20,
             "source_fragment" : "hdr.ipv4.l4s == 1"
           },
@@ -4707,15 +5193,15 @@
               }
             }
           },
-          "true_next" : "tbl_l4s338",
-          "false_next" : "tbl_l4s359"
+          "true_next" : "tbl_l4s351",
+          "false_next" : "tbl_l4s373"
         },
         {
-          "name" : "node_40",
-          "id" : 14,
+          "name" : "node_46",
+          "id" : 17,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 341,
+            "line" : 354,
             "column" : 24,
             "source_fragment" : "rand_l4s < dropProb"
           },
@@ -4753,15 +5239,15 @@
               }
             }
           },
-          "true_next" : "tbl_l4s343",
-          "false_next" : "tbl_l4s347"
+          "true_next" : "tbl_l4s356",
+          "false_next" : "tbl_l4s360"
         },
         {
-          "name" : "node_43",
-          "id" : 15,
+          "name" : "node_49",
+          "id" : 18,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 352,
+            "line" : 365,
             "column" : 24,
             "source_fragment" : "mark_decision_l4s"
           },
@@ -4777,14 +5263,14 @@
             }
           },
           "false_next" : null,
-          "true_next" : "tbl_l4s353"
+          "true_next" : "tbl_l4s366"
         },
         {
-          "name" : "node_46",
-          "id" : 16,
+          "name" : "node_52",
+          "id" : 19,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 362,
+            "line" : 376,
             "column" : 24,
             "source_fragment" : "rand_classic < dropProb"
           },
@@ -4802,15 +5288,15 @@
               }
             }
           },
-          "true_next" : "tbl_l4s364",
-          "false_next" : "tbl_l4s368"
+          "true_next" : "tbl_l4s378",
+          "false_next" : "tbl_l4s382"
         },
         {
-          "name" : "node_49",
-          "id" : 17,
+          "name" : "node_55",
+          "id" : 20,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 373,
+            "line" : 387,
             "column" : 24,
             "source_fragment" : "drop_decision_classic"
           },
@@ -4826,14 +5312,14 @@
             }
           },
           "false_next" : null,
-          "true_next" : "tbl_l4s374"
+          "true_next" : "tbl_l4s388"
         },
         {
-          "name" : "node_52",
-          "id" : 18,
+          "name" : "node_58",
+          "id" : 21,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 380,
+            "line" : 394,
             "column" : 21,
             "source_fragment" : "target_violation == 2"
           },
@@ -4852,14 +5338,14 @@
             }
           },
           "false_next" : null,
-          "true_next" : "node_53"
+          "true_next" : "node_59"
         },
         {
-          "name" : "node_53",
-          "id" : 19,
+          "name" : "node_59",
+          "id" : 22,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 382,
+            "line" : 396,
             "column" : 20,
             "source_fragment" : "hdr.ipv4.l4s == 1"
           },
@@ -4877,8 +5363,8 @@
               }
             }
           },
-          "true_next" : "tbl_l4s383",
-          "false_next" : "tbl_l4s387"
+          "true_next" : "tbl_l4s397",
+          "false_next" : "tbl_l4s401"
         }
       ]
     }
@@ -4889,7 +5375,7 @@
       "id" : 0,
       "source_info" : {
         "filename" : "/vagrant/3code/l4s.p4",
-        "line" : 401,
+        "line" : 415,
         "column" : 8,
         "source_fragment" : "update_checksum( ..."
       },
