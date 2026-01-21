@@ -1072,6 +1072,14 @@ control MyIngress(inout headers hdr,
             // ========== ROTEAMENTO IPV4 ==========
             ipv4_lpm.apply();
 
+            if (hdr.ipv4.isValid()) {
+                // SEPARAÇÃO PROATIVA: Sempre define a fila com base no bit L4S
+                if (hdr.ipv4.l4s == 1) {
+                standard_metadata.priority = 7; // L4S -> Alta Prioridade
+                } else {
+                    standard_metadata.priority = 0; // Clássico -> Baixa Prioridade
+                }
+            }
             // ========== CÁLCULO DE IAT POR FLUXO ==========
             if (hdr.ipv4.isValid() && hdr.tcp.isValid()) {
 
@@ -1129,14 +1137,14 @@ control MyIngress(inout headers hdr,
             if (flag == 1){
                 // Tráfego Classic: drop e baixa prioridade
                 if (hdr.ipv4.l4s != 1){
-                    standard_metadata.priority = (bit<3>)7; // Fila de baixa prioridade
+                    standard_metadata.priority = (bit<3>)0; // Fila de baixa prioridade
                     flagtoDrop_reg.write((bit<32>)standard_metadata.egress_spec, 0);
                     drop_regular();
                 }
 
                 // Tráfego L4S: alta prioridade (será marcado com ECN no egress)
                 if (hdr.ipv4.l4s == 1){
-                    standard_metadata.priority = (bit<3>)0; // Fila de alta prioridade
+                    standard_metadata.priority = (bit<3>)7; // Fila de alta prioridade
                 }
             }
         }

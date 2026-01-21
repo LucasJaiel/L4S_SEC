@@ -288,7 +288,7 @@
       "id" : 0,
       "source_info" : {
         "filename" : "/vagrant/3code/l4s.p4",
-        "line" : 417,
+        "line" : 425,
         "column" : 8,
         "source_fragment" : "MyDeparser"
       },
@@ -339,7 +339,7 @@
       "id" : 3,
       "source_info" : {
         "filename" : "/vagrant/3code/l4s.p4",
-        "line" : 272,
+        "line" : 280,
         "column" : 36,
         "source_fragment" : "recirc"
       },
@@ -351,7 +351,7 @@
       "id" : 4,
       "source_info" : {
         "filename" : "/vagrant/3code/l4s.p4",
-        "line" : 273,
+        "line" : 281,
         "column" : 36,
         "source_fragment" : "cloneCount"
       },
@@ -485,7 +485,7 @@
       "id" : 10,
       "source_info" : {
         "filename" : "/vagrant/3code/l4s.p4",
-        "line" : 269,
+        "line" : 277,
         "column" : 25,
         "source_fragment" : "QueueID"
       },
@@ -497,7 +497,7 @@
       "id" : 11,
       "source_info" : {
         "filename" : "/vagrant/3code/l4s.p4",
-        "line" : 270,
+        "line" : 278,
         "column" : 26,
         "source_fragment" : "dropProbability"
       },
@@ -509,7 +509,7 @@
       "id" : 12,
       "source_info" : {
         "filename" : "/vagrant/3code/l4s.p4",
-        "line" : 271,
+        "line" : 279,
         "column" : 26,
         "source_fragment" : "QDelay_reg"
       },
@@ -550,7 +550,7 @@
       "id" : 1,
       "source_info" : {
         "filename" : "/vagrant/3code/l4s.p4",
-        "line" : 393,
+        "line" : 401,
         "column" : 8,
         "source_fragment" : "update_checksum( ..."
       },
@@ -1003,8 +1003,60 @@
       ]
     },
     {
-      "name" : "l4s219",
+      "name" : "l4s193",
       "id" : 6,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["standard_metadata", "priority"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x07"
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 193,
+            "column" : 16,
+            "source_fragment" : "standard_metadata.priority = 7"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "l4s195",
+      "id" : 7,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["standard_metadata", "priority"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00"
+            }
+          ],
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 195,
+            "column" : 20,
+            "source_fragment" : "standard_metadata.priority = 0"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "l4s227",
+      "id" : 8,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -1044,7 +1096,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 219,
+            "line" : 227,
             "column" : 46,
             "source_fragment" : "iat"
           }
@@ -1067,7 +1119,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 219,
+            "line" : 227,
             "column" : 20,
             "source_fragment" : "flow_iat.write(flow_hash, iat)"
           }
@@ -1075,8 +1127,8 @@
       ]
     },
     {
-      "name" : "l4s222",
-      "id" : 7,
+      "name" : "l4s230",
+      "id" : 9,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -1097,7 +1149,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 222,
+            "line" : 230,
             "column" : 20,
             "source_fragment" : "flow_src_ip.write(flow_hash, hdr.ipv4.srcAddr)"
           }
@@ -1120,7 +1172,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 223,
+            "line" : 231,
             "column" : 20,
             "source_fragment" : "flow_dst_ip.write(flow_hash, hdr.ipv4.dstAddr)"
           }
@@ -1143,7 +1195,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 224,
+            "line" : 232,
             "column" : 20,
             "source_fragment" : "flow_src_port.write(flow_hash, src_port)"
           }
@@ -1166,7 +1218,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 225,
+            "line" : 233,
             "column" : 20,
             "source_fragment" : "flow_dst_port.write(flow_hash, dst_port)"
           }
@@ -1189,7 +1241,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 226,
+            "line" : 234,
             "column" : 20,
             "source_fragment" : "flow_protocol.write(flow_hash, hdr.ipv4.protocol)"
           }
@@ -1212,7 +1264,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 227,
+            "line" : 235,
             "column" : 20,
             "source_fragment" : "flow_is_l4s.write(flow_hash, hdr.ipv4.l4s)"
           }
@@ -1235,7 +1287,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 228,
+            "line" : 236,
             "column" : 20,
             "source_fragment" : "flow_iat.write(flow_hash, 0)"
           }
@@ -1243,8 +1295,8 @@
       ]
     },
     {
-      "name" : "l4s199",
-      "id" : 8,
+      "name" : "l4s207",
+      "id" : 10,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -1261,7 +1313,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 202,
+            "line" : 210,
             "column" : 22,
             "source_fragment" : "hdr.ipv4.srcAddr"
           }
@@ -1280,7 +1332,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 203,
+            "line" : 211,
             "column" : 22,
             "source_fragment" : "hdr.ipv4.dstAddr"
           }
@@ -1299,7 +1351,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 204,
+            "line" : 212,
             "column" : 22,
             "source_fragment" : "src_port"
           }
@@ -1318,7 +1370,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 205,
+            "line" : 213,
             "column" : 22,
             "source_fragment" : "dst_port"
           }
@@ -1337,7 +1389,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 206,
+            "line" : 214,
             "column" : 22,
             "source_fragment" : "hdr.ipv4.protocol"
           }
@@ -1364,7 +1416,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 199,
+            "line" : 207,
             "column" : 16,
             "source_fragment" : "hash(flow_hash, ..."
           }
@@ -1387,7 +1439,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 214,
+            "line" : 222,
             "column" : 16,
             "source_fragment" : "flow_last_timestamp.read(last_ts, flow_hash)"
           }
@@ -1395,8 +1447,8 @@
       ]
     },
     {
-      "name" : "l4s232",
-      "id" : 9,
+      "name" : "l4s240",
+      "id" : 11,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -1417,7 +1469,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 232,
+            "line" : 240,
             "column" : 16,
             "source_fragment" : "flow_last_timestamp.write(flow_hash, current_ts)"
           }
@@ -1440,7 +1492,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 234,
+            "line" : 242,
             "column" : 16,
             "source_fragment" : "flow_packet_count.read(pkt_count, flow_hash)"
           }
@@ -1482,7 +1534,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 235,
+            "line" : 243,
             "column" : 51,
             "source_fragment" : "pkt_count + 1"
           }
@@ -1505,7 +1557,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 235,
+            "line" : 243,
             "column" : 16,
             "source_fragment" : "flow_packet_count.write(flow_hash, pkt_count + 1)"
           }
@@ -1513,8 +1565,8 @@
       ]
     },
     {
-      "name" : "l4s247",
-      "id" : 10,
+      "name" : "l4s255",
+      "id" : 12,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -1526,14 +1578,14 @@
             },
             {
               "type" : "hexstr",
-              "value" : "0x07"
+              "value" : "0x00"
             }
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 247,
+            "line" : 255,
             "column" : 20,
-            "source_fragment" : "standard_metadata.priority = (bit<3>)7"
+            "source_fragment" : "standard_metadata.priority = (bit<3>)0"
           }
         },
         {
@@ -1563,7 +1615,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 248,
+            "line" : 256,
             "column" : 41,
             "source_fragment" : "(bit<32>)standard_metadata.egress_spec"
           }
@@ -1586,7 +1638,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 248,
+            "line" : 256,
             "column" : 20,
             "source_fragment" : "flagtoDrop_reg.write((bit<32>)standard_metadata.egress_spec, 0)"
           }
@@ -1594,8 +1646,8 @@
       ]
     },
     {
-      "name" : "l4s254",
-      "id" : 11,
+      "name" : "l4s262",
+      "id" : 13,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -1607,21 +1659,21 @@
             },
             {
               "type" : "hexstr",
-              "value" : "0x00"
+              "value" : "0x07"
             }
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 254,
+            "line" : 262,
             "column" : 20,
-            "source_fragment" : "standard_metadata.priority = (bit<3>)0"
+            "source_fragment" : "standard_metadata.priority = (bit<3>)7"
           }
         }
       ]
     },
     {
-      "name" : "l4s241",
-      "id" : 12,
+      "name" : "l4s249",
+      "id" : 14,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -1651,7 +1703,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 241,
+            "line" : 249,
             "column" : 38,
             "source_fragment" : "(bit<32>)standard_metadata.egress_spec"
           }
@@ -1674,7 +1726,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 241,
+            "line" : 249,
             "column" : 12,
             "source_fragment" : "flagtoDrop_reg.read(flag, (bit<32>)standard_metadata.egress_spec)"
           }
@@ -1683,7 +1735,7 @@
     },
     {
       "name" : "MyEgress.recirculate_packet",
-      "id" : 13,
+      "id" : 15,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -1696,7 +1748,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 276,
+            "line" : 284,
             "column" : 8,
             "source_fragment" : "recirculate_preserving_field_list(0)"
           }
@@ -1715,7 +1767,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 277,
+            "line" : 285,
             "column" : 8,
             "source_fragment" : "recirc.count(meta.queue_metadata.output_port)"
           }
@@ -1724,7 +1776,7 @@
     },
     {
       "name" : "MyEgress.clonePacket",
-      "id" : 14,
+      "id" : 16,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -1741,7 +1793,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 281,
+            "line" : 289,
             "column" : 8,
             "source_fragment" : "clone_preserving_field_list(CloneType.E2E, meta.queue_metadata.output_port, 0)"
           }
@@ -1760,7 +1812,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 282,
+            "line" : 290,
             "column" : 8,
             "source_fragment" : "cloneCount.count(meta.queue_metadata.output_port)"
           }
@@ -1769,7 +1821,7 @@
     },
     {
       "name" : "MyEgress.clonePacket",
-      "id" : 15,
+      "id" : 17,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -1786,7 +1838,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 281,
+            "line" : 289,
             "column" : 8,
             "source_fragment" : "clone_preserving_field_list(CloneType.E2E, meta.queue_metadata.output_port, 0)"
           }
@@ -1805,7 +1857,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 282,
+            "line" : 290,
             "column" : 8,
             "source_fragment" : "cloneCount.count(meta.queue_metadata.output_port)"
           }
@@ -1813,8 +1865,8 @@
       ]
     },
     {
-      "name" : "l4s291",
-      "id" : 16,
+      "name" : "l4s299",
+      "id" : 18,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -1844,7 +1896,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 291,
+            "line" : 299,
             "column" : 12,
             "source_fragment" : "meta.queue_metadata.output_port = (bit<32>)standard_metadata.egress_port"
           }
@@ -1852,8 +1904,8 @@
       ]
     },
     {
-      "name" : "l4s309",
-      "id" : 17,
+      "name" : "l4s317",
+      "id" : 19,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -1870,7 +1922,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 309,
+            "line" : 317,
             "column" : 16,
             "source_fragment" : "target_violation = 0"
           }
@@ -1878,8 +1930,8 @@
       ]
     },
     {
-      "name" : "l4s312",
-      "id" : 18,
+      "name" : "l4s320",
+      "id" : 20,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -1896,7 +1948,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 312,
+            "line" : 320,
             "column" : 16,
             "source_fragment" : "target_violation = 1"
           }
@@ -1904,8 +1956,8 @@
       ]
     },
     {
-      "name" : "l4s315",
-      "id" : 19,
+      "name" : "l4s323",
+      "id" : 21,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -1922,7 +1974,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 315,
+            "line" : 323,
             "column" : 16,
             "source_fragment" : "target_violation = 2"
           }
@@ -1930,8 +1982,8 @@
       ]
     },
     {
-      "name" : "l4s299",
-      "id" : 20,
+      "name" : "l4s307",
+      "id" : 22,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -1961,7 +2013,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 299,
+            "line" : 307,
             "column" : 44,
             "source_fragment" : "(bit<32>)standard_metadata.egress_port"
           }
@@ -1984,7 +2036,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 299,
+            "line" : 307,
             "column" : 12,
             "source_fragment" : "QDelay_reg.read(previousQDelay, (bit<32>)standard_metadata.egress_port)"
           }
@@ -2016,7 +2068,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 303,
+            "line" : 311,
             "column" : 29,
             "source_fragment" : "(bit<32>)standard_metadata.egress_port"
           }
@@ -2098,7 +2150,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 303,
+            "line" : 311,
             "column" : 69,
             "source_fragment" : "EWMA"
           }
@@ -2121,7 +2173,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 303,
+            "line" : 311,
             "column" : 12,
             "source_fragment" : "QDelay_reg.write((bit<32>)standard_metadata.egress_port, EWMA)"
           }
@@ -2140,7 +2192,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 306,
+            "line" : 314,
             "column" : 12,
             "source_fragment" : "bit<8> target_violation = 0"
           }
@@ -2148,8 +2200,8 @@
       ]
     },
     {
-      "name" : "l4s335",
-      "id" : 21,
+      "name" : "l4s343",
+      "id" : 23,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -2179,7 +2231,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 335,
+            "line" : 343,
             "column" : 46,
             "source_fragment" : "(bit<32>)standard_metadata.egress_port"
           }
@@ -2221,7 +2273,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 335,
+            "line" : 343,
             "column" : 86,
             "source_fragment" : "dropProb_temp"
           }
@@ -2244,7 +2296,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 335,
+            "line" : 343,
             "column" : 24,
             "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp)"
           }
@@ -2273,7 +2325,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 336,
+            "line" : 344,
             "column" : 24,
             "source_fragment" : "mark_decision_l4s = true"
           }
@@ -2281,8 +2333,8 @@
       ]
     },
     {
-      "name" : "l4s339",
-      "id" : 22,
+      "name" : "l4s347",
+      "id" : 24,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -2312,7 +2364,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 339,
+            "line" : 347,
             "column" : 46,
             "source_fragment" : "(bit<32>)standard_metadata.egress_port"
           }
@@ -2354,7 +2406,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 339,
+            "line" : 347,
             "column" : 86,
             "source_fragment" : "dropProb_temp"
           }
@@ -2377,7 +2429,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 339,
+            "line" : 347,
             "column" : 24,
             "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp)"
           }
@@ -2406,7 +2458,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 340,
+            "line" : 348,
             "column" : 24,
             "source_fragment" : "mark_decision_l4s = false"
           }
@@ -2414,8 +2466,8 @@
       ]
     },
     {
-      "name" : "l4s330",
-      "id" : 23,
+      "name" : "l4s338",
+      "id" : 25,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -2445,7 +2497,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 330,
+            "line" : 338,
             "column" : 51,
             "source_fragment" : "(bit<32>)standard_metadata.egress_port"
           }
@@ -2468,7 +2520,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 330,
+            "line" : 338,
             "column" : 20,
             "source_fragment" : "dropProbability.read(dropProb, (bit<32>)standard_metadata.egress_port)"
           }
@@ -2476,8 +2528,8 @@
       ]
     },
     {
-      "name" : "l4s345",
-      "id" : 24,
+      "name" : "l4s353",
+      "id" : 26,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -2494,7 +2546,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 345,
+            "line" : 353,
             "column" : 24,
             "source_fragment" : "hdr.ipv4.ecn = 3"
           }
@@ -2502,8 +2554,8 @@
       ]
     },
     {
-      "name" : "l4s356",
-      "id" : 25,
+      "name" : "l4s364",
+      "id" : 27,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -2533,7 +2585,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 356,
+            "line" : 364,
             "column" : 46,
             "source_fragment" : "(bit<32>)standard_metadata.egress_port"
           }
@@ -2575,7 +2627,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 356,
+            "line" : 364,
             "column" : 86,
             "source_fragment" : "dropProb_temp"
           }
@@ -2598,7 +2650,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 356,
+            "line" : 364,
             "column" : 24,
             "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp)"
           }
@@ -2627,7 +2679,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 357,
+            "line" : 365,
             "column" : 24,
             "source_fragment" : "drop_decision_classic = true"
           }
@@ -2635,8 +2687,8 @@
       ]
     },
     {
-      "name" : "l4s360",
-      "id" : 26,
+      "name" : "l4s368",
+      "id" : 28,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -2666,7 +2718,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 360,
+            "line" : 368,
             "column" : 46,
             "source_fragment" : "(bit<32>)standard_metadata.egress_port"
           }
@@ -2708,7 +2760,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 360,
+            "line" : 368,
             "column" : 86,
             "source_fragment" : "dropProb_temp"
           }
@@ -2731,7 +2783,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 360,
+            "line" : 368,
             "column" : 24,
             "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp)"
           }
@@ -2760,7 +2812,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 361,
+            "line" : 369,
             "column" : 24,
             "source_fragment" : "drop_decision_classic = false"
           }
@@ -2768,8 +2820,8 @@
       ]
     },
     {
-      "name" : "l4s351",
-      "id" : 27,
+      "name" : "l4s359",
+      "id" : 29,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -2799,7 +2851,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 351,
+            "line" : 359,
             "column" : 51,
             "source_fragment" : "(bit<32>)standard_metadata.egress_port"
           }
@@ -2822,7 +2874,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 351,
+            "line" : 359,
             "column" : 20,
             "source_fragment" : "dropProbability.read(dropProb, (bit<32>)standard_metadata.egress_port)"
           }
@@ -2830,8 +2882,8 @@
       ]
     },
     {
-      "name" : "l4s366",
-      "id" : 28,
+      "name" : "l4s374",
+      "id" : 30,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -2861,7 +2913,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 366,
+            "line" : 374,
             "column" : 24,
             "source_fragment" : "meta.queue_metadata.output_port = (bit<32>)standard_metadata.egress_port"
           }
@@ -2869,8 +2921,8 @@
       ]
     },
     {
-      "name" : "l4s322",
-      "id" : 29,
+      "name" : "l4s330",
+      "id" : 31,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -2891,7 +2943,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 322,
+            "line" : 330,
             "column" : 16,
             "source_fragment" : "random(rand_classic, 0, 65535)"
           }
@@ -2899,8 +2951,8 @@
       ]
     },
     {
-      "name" : "l4s375",
-      "id" : 30,
+      "name" : "l4s383",
+      "id" : 32,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -2917,7 +2969,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 375,
+            "line" : 383,
             "column" : 20,
             "source_fragment" : "hdr.ipv4.ecn = 3"
           }
@@ -2925,8 +2977,8 @@
       ]
     },
     {
-      "name" : "l4s379",
-      "id" : 31,
+      "name" : "l4s387",
+      "id" : 33,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -2956,7 +3008,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 379,
+            "line" : 387,
             "column" : 20,
             "source_fragment" : "meta.queue_metadata.output_port = (bit<32>)standard_metadata.egress_port"
           }
@@ -2964,8 +3016,8 @@
       ]
     },
     {
-      "name" : "l4s287",
-      "id" : 32,
+      "name" : "l4s295",
+      "id" : 34,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -2995,7 +3047,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 287,
+            "line" : 295,
             "column" : 22,
             "source_fragment" : "(bit<32>)standard_metadata.qid"
           }
@@ -3018,7 +3070,7 @@
           ],
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 287,
+            "line" : 295,
             "column" : 8,
             "source_fragment" : "QueueID.write((bit<32>)standard_metadata.qid, 1)"
           }
@@ -3135,11 +3187,69 @@
           }
         },
         {
-          "name" : "tbl_l4s199",
+          "name" : "tbl_l4s193",
           "id" : 3,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 199,
+            "line" : 193,
+            "column" : 43,
+            "source_fragment" : "="
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [6],
+          "actions" : ["l4s193"],
+          "base_default_next" : "node_10",
+          "next_tables" : {
+            "l4s193" : "node_10"
+          },
+          "default_entry" : {
+            "action_id" : 6,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s195",
+          "id" : 4,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 195,
+            "column" : 47,
+            "source_fragment" : "="
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [7],
+          "actions" : ["l4s195"],
+          "base_default_next" : "node_10",
+          "next_tables" : {
+            "l4s195" : "node_10"
+          },
+          "default_entry" : {
+            "action_id" : 7,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s207",
+          "id" : 5,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 207,
             "column" : 16,
             "source_fragment" : "hash(flow_hash, ..."
           },
@@ -3150,25 +3260,25 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [8],
-          "actions" : ["l4s199"],
-          "base_default_next" : "node_8",
+          "action_ids" : [10],
+          "actions" : ["l4s207"],
+          "base_default_next" : "node_12",
           "next_tables" : {
-            "l4s199" : "node_8"
+            "l4s207" : "node_12"
           },
           "default_entry" : {
-            "action_id" : 8,
+            "action_id" : 10,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
           }
         },
         {
-          "name" : "tbl_l4s219",
-          "id" : 4,
+          "name" : "tbl_l4s227",
+          "id" : 6,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 219,
+            "line" : 227,
             "column" : 20,
             "source_fragment" : "flow_iat.write(flow_hash, iat)"
           },
@@ -3179,25 +3289,25 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [6],
-          "actions" : ["l4s219"],
-          "base_default_next" : "tbl_l4s232",
+          "action_ids" : [8],
+          "actions" : ["l4s227"],
+          "base_default_next" : "tbl_l4s240",
           "next_tables" : {
-            "l4s219" : "tbl_l4s232"
+            "l4s227" : "tbl_l4s240"
           },
           "default_entry" : {
-            "action_id" : 6,
+            "action_id" : 8,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
           }
         },
         {
-          "name" : "tbl_l4s222",
-          "id" : 5,
+          "name" : "tbl_l4s230",
+          "id" : 7,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 222,
+            "line" : 230,
             "column" : 20,
             "source_fragment" : "flow_src_ip.write(flow_hash, hdr.ipv4.srcAddr); ..."
           },
@@ -3208,25 +3318,25 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [7],
-          "actions" : ["l4s222"],
-          "base_default_next" : "tbl_l4s232",
+          "action_ids" : [9],
+          "actions" : ["l4s230"],
+          "base_default_next" : "tbl_l4s240",
           "next_tables" : {
-            "l4s222" : "tbl_l4s232"
+            "l4s230" : "tbl_l4s240"
           },
           "default_entry" : {
-            "action_id" : 7,
+            "action_id" : 9,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
           }
         },
         {
-          "name" : "tbl_l4s232",
-          "id" : 6,
+          "name" : "tbl_l4s240",
+          "id" : 8,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 232,
+            "line" : 240,
             "column" : 16,
             "source_fragment" : "flow_last_timestamp.write(flow_hash, current_ts); ..."
           },
@@ -3237,25 +3347,25 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [9],
-          "actions" : ["l4s232"],
-          "base_default_next" : "tbl_l4s241",
+          "action_ids" : [11],
+          "actions" : ["l4s240"],
+          "base_default_next" : "tbl_l4s249",
           "next_tables" : {
-            "l4s232" : "tbl_l4s241"
+            "l4s240" : "tbl_l4s249"
           },
           "default_entry" : {
-            "action_id" : 9,
+            "action_id" : 11,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
           }
         },
         {
-          "name" : "tbl_l4s241",
-          "id" : 7,
+          "name" : "tbl_l4s249",
+          "id" : 9,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 241,
+            "line" : 249,
             "column" : 12,
             "source_fragment" : "flagtoDrop_reg.read(flag, (bit<32>)standard_metadata.egress_spec)"
           },
@@ -3266,11 +3376,40 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [12],
-          "actions" : ["l4s241"],
-          "base_default_next" : "node_13",
+          "action_ids" : [14],
+          "actions" : ["l4s249"],
+          "base_default_next" : "node_17",
           "next_tables" : {
-            "l4s241" : "node_13"
+            "l4s249" : "node_17"
+          },
+          "default_entry" : {
+            "action_id" : 14,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s255",
+          "id" : 10,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 255,
+            "column" : 47,
+            "source_fragment" : "= (bit<3>)0; // Fila de baixa prioridade ..."
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [12],
+          "actions" : ["l4s255"],
+          "base_default_next" : "tbl_drop_regular",
+          "next_tables" : {
+            "l4s255" : "tbl_drop_regular"
           },
           "default_entry" : {
             "action_id" : 12,
@@ -3280,40 +3419,11 @@
           }
         },
         {
-          "name" : "tbl_l4s247",
-          "id" : 8,
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 247,
-            "column" : 47,
-            "source_fragment" : "= (bit<3>)7; // Fila de baixa prioridade ..."
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [10],
-          "actions" : ["l4s247"],
-          "base_default_next" : "tbl_drop_regular",
-          "next_tables" : {
-            "l4s247" : "tbl_drop_regular"
-          },
-          "default_entry" : {
-            "action_id" : 10,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
           "name" : "tbl_drop_regular",
-          "id" : 9,
+          "id" : 11,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 249,
+            "line" : 257,
             "column" : 20,
             "source_fragment" : "drop_regular()"
           },
@@ -3326,9 +3436,9 @@
           "direct_meters" : null,
           "action_ids" : [3],
           "actions" : ["MyIngress.drop_regular"],
-          "base_default_next" : "node_17",
+          "base_default_next" : "node_21",
           "next_tables" : {
-            "MyIngress.drop_regular" : "node_17"
+            "MyIngress.drop_regular" : "node_21"
           },
           "default_entry" : {
             "action_id" : 3,
@@ -3338,11 +3448,11 @@
           }
         },
         {
-          "name" : "tbl_l4s254",
-          "id" : 10,
+          "name" : "tbl_l4s262",
+          "id" : 12,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 254,
+            "line" : 262,
             "column" : 47,
             "source_fragment" : "="
           },
@@ -3353,14 +3463,14 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [11],
-          "actions" : ["l4s254"],
+          "action_ids" : [13],
+          "actions" : ["l4s262"],
           "base_default_next" : null,
           "next_tables" : {
-            "l4s254" : null
+            "l4s262" : null
           },
           "default_entry" : {
-            "action_id" : 11,
+            "action_id" : 13,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
@@ -3400,7 +3510,56 @@
           "id" : 1,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 191,
+            "line" : 190,
+            "column" : 16,
+            "source_fragment" : "hdr.ipv4.isValid()"
+          },
+          "expression" : {
+            "type" : "expression",
+            "value" : {
+              "op" : "d2b",
+              "left" : null,
+              "right" : {
+                "type" : "field",
+                "value" : ["ipv4", "$valid$"]
+              }
+            }
+          },
+          "true_next" : "node_7",
+          "false_next" : "node_10"
+        },
+        {
+          "name" : "node_7",
+          "id" : 2,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 192,
+            "column" : 20,
+            "source_fragment" : "hdr.ipv4.l4s == 1"
+          },
+          "expression" : {
+            "type" : "expression",
+            "value" : {
+              "op" : "==",
+              "left" : {
+                "type" : "field",
+                "value" : ["ipv4", "l4s"]
+              },
+              "right" : {
+                "type" : "hexstr",
+                "value" : "0x01"
+              }
+            }
+          },
+          "true_next" : "tbl_l4s193",
+          "false_next" : "tbl_l4s195"
+        },
+        {
+          "name" : "node_10",
+          "id" : 3,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 199,
             "column" : 16,
             "source_fragment" : "hdr.ipv4.isValid() && hdr.tcp.isValid()"
           },
@@ -3432,15 +3591,15 @@
               }
             }
           },
-          "true_next" : "tbl_l4s199",
-          "false_next" : "tbl_l4s241"
+          "true_next" : "tbl_l4s207",
+          "false_next" : "tbl_l4s249"
         },
         {
-          "name" : "node_8",
-          "id" : 2,
+          "name" : "node_12",
+          "id" : 4,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 217,
+            "line" : 225,
             "column" : 20,
             "source_fragment" : "last_ts != 0"
           },
@@ -3458,15 +3617,15 @@
               }
             }
           },
-          "true_next" : "tbl_l4s219",
-          "false_next" : "tbl_l4s222"
+          "true_next" : "tbl_l4s227",
+          "false_next" : "tbl_l4s230"
         },
         {
-          "name" : "node_13",
-          "id" : 3,
+          "name" : "node_17",
+          "id" : 5,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 244,
+            "line" : 252,
             "column" : 16,
             "source_fragment" : "flag == 1"
           },
@@ -3485,14 +3644,14 @@
             }
           },
           "false_next" : null,
-          "true_next" : "node_14"
+          "true_next" : "node_18"
         },
         {
-          "name" : "node_14",
-          "id" : 4,
+          "name" : "node_18",
+          "id" : 6,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 246,
+            "line" : 254,
             "column" : 20,
             "source_fragment" : "hdr.ipv4.l4s != 1"
           },
@@ -3510,15 +3669,15 @@
               }
             }
           },
-          "true_next" : "tbl_l4s247",
-          "false_next" : "node_17"
+          "true_next" : "tbl_l4s255",
+          "false_next" : "node_21"
         },
         {
-          "name" : "node_17",
-          "id" : 5,
+          "name" : "node_21",
+          "id" : 7,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 253,
+            "line" : 261,
             "column" : 20,
             "source_fragment" : "hdr.ipv4.l4s == 1"
           },
@@ -3537,7 +3696,7 @@
             }
           },
           "false_next" : null,
-          "true_next" : "tbl_l4s254"
+          "true_next" : "tbl_l4s262"
         }
       ]
     },
@@ -3546,18 +3705,18 @@
       "id" : 1,
       "source_info" : {
         "filename" : "/vagrant/3code/l4s.p4",
-        "line" : 265,
+        "line" : 273,
         "column" : 8,
         "source_fragment" : "MyEgress"
       },
-      "init_table" : "tbl_l4s287",
+      "init_table" : "tbl_l4s295",
       "tables" : [
         {
-          "name" : "tbl_l4s287",
-          "id" : 11,
+          "name" : "tbl_l4s295",
+          "id" : 13,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 287,
+            "line" : 295,
             "column" : 8,
             "source_fragment" : "QueueID.write((bit<32>)standard_metadata.qid, 1)"
           },
@@ -3568,72 +3727,14 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [32],
-          "actions" : ["l4s287"],
-          "base_default_next" : "node_22",
+          "action_ids" : [34],
+          "actions" : ["l4s295"],
+          "base_default_next" : "node_26",
           "next_tables" : {
-            "l4s287" : "node_22"
+            "l4s295" : "node_26"
           },
           "default_entry" : {
-            "action_id" : 32,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_l4s291",
-          "id" : 12,
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 291,
-            "column" : 44,
-            "source_fragment" : "="
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [16],
-          "actions" : ["l4s291"],
-          "base_default_next" : "tbl_recirculate_packet",
-          "next_tables" : {
-            "l4s291" : "tbl_recirculate_packet"
-          },
-          "default_entry" : {
-            "action_id" : 16,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_recirculate_packet",
-          "id" : 13,
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 292,
-            "column" : 12,
-            "source_fragment" : "recirculate_packet()"
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [13],
-          "actions" : ["MyEgress.recirculate_packet"],
-          "base_default_next" : null,
-          "next_tables" : {
-            "MyEgress.recirculate_packet" : null
-          },
-          "default_entry" : {
-            "action_id" : 13,
+            "action_id" : 34,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
@@ -3645,65 +3746,7 @@
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
             "line" : 299,
-            "column" : 12,
-            "source_fragment" : "QDelay_reg.read(previousQDelay, (bit<32>)standard_metadata.egress_port); ..."
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [20],
-          "actions" : ["l4s299"],
-          "base_default_next" : "node_26",
-          "next_tables" : {
-            "l4s299" : "node_26"
-          },
-          "default_entry" : {
-            "action_id" : 20,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_l4s309",
-          "id" : 15,
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 309,
-            "column" : 33,
-            "source_fragment" : "="
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [17],
-          "actions" : ["l4s309"],
-          "base_default_next" : "node_32",
-          "next_tables" : {
-            "l4s309" : "node_32"
-          },
-          "default_entry" : {
-            "action_id" : 17,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_l4s312",
-          "id" : 16,
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 312,
-            "column" : 33,
+            "column" : 44,
             "source_fragment" : "="
           },
           "key" : [],
@@ -3714,10 +3757,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [18],
-          "actions" : ["l4s312"],
-          "base_default_next" : "node_32",
+          "actions" : ["l4s299"],
+          "base_default_next" : "tbl_recirculate_packet",
           "next_tables" : {
-            "l4s312" : "node_32"
+            "l4s299" : "tbl_recirculate_packet"
           },
           "default_entry" : {
             "action_id" : 18,
@@ -3727,11 +3770,69 @@
           }
         },
         {
-          "name" : "tbl_l4s315",
+          "name" : "tbl_recirculate_packet",
+          "id" : 15,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 300,
+            "column" : 12,
+            "source_fragment" : "recirculate_packet()"
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [15],
+          "actions" : ["MyEgress.recirculate_packet"],
+          "base_default_next" : null,
+          "next_tables" : {
+            "MyEgress.recirculate_packet" : null
+          },
+          "default_entry" : {
+            "action_id" : 15,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s307",
+          "id" : 16,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 307,
+            "column" : 12,
+            "source_fragment" : "QDelay_reg.read(previousQDelay, (bit<32>)standard_metadata.egress_port); ..."
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [22],
+          "actions" : ["l4s307"],
+          "base_default_next" : "node_30",
+          "next_tables" : {
+            "l4s307" : "node_30"
+          },
+          "default_entry" : {
+            "action_id" : 22,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s317",
           "id" : 17,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 315,
+            "line" : 317,
             "column" : 33,
             "source_fragment" : "="
           },
@@ -3743,10 +3844,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [19],
-          "actions" : ["l4s315"],
-          "base_default_next" : "node_32",
+          "actions" : ["l4s317"],
+          "base_default_next" : "node_36",
           "next_tables" : {
-            "l4s315" : "node_32"
+            "l4s317" : "node_36"
           },
           "default_entry" : {
             "action_id" : 19,
@@ -3756,301 +3857,11 @@
           }
         },
         {
-          "name" : "tbl_l4s322",
+          "name" : "tbl_l4s320",
           "id" : 18,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 322,
-            "column" : 16,
-            "source_fragment" : "random(rand_classic, 0, 65535)"
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [29],
-          "actions" : ["l4s322"],
-          "base_default_next" : "node_34",
-          "next_tables" : {
-            "l4s322" : "node_34"
-          },
-          "default_entry" : {
-            "action_id" : 29,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_l4s330",
-          "id" : 19,
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 330,
-            "column" : 20,
-            "source_fragment" : "dropProbability.read(dropProb, (bit<32>)standard_metadata.egress_port)"
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [23],
-          "actions" : ["l4s330"],
-          "base_default_next" : "node_36",
-          "next_tables" : {
-            "l4s330" : "node_36"
-          },
-          "default_entry" : {
-            "action_id" : 23,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_l4s335",
-          "id" : 20,
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 335,
-            "column" : 24,
-            "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp); ..."
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [21],
-          "actions" : ["l4s335"],
-          "base_default_next" : "node_39",
-          "next_tables" : {
-            "l4s335" : "node_39"
-          },
-          "default_entry" : {
-            "action_id" : 21,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_l4s339",
-          "id" : 21,
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 339,
-            "column" : 24,
-            "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp); ..."
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [22],
-          "actions" : ["l4s339"],
-          "base_default_next" : "node_39",
-          "next_tables" : {
-            "l4s339" : "node_39"
-          },
-          "default_entry" : {
-            "action_id" : 22,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_l4s345",
-          "id" : 22,
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 345,
-            "column" : 37,
-            "source_fragment" : "="
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [24],
-          "actions" : ["l4s345"],
-          "base_default_next" : null,
-          "next_tables" : {
-            "l4s345" : null
-          },
-          "default_entry" : {
-            "action_id" : 24,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_l4s351",
-          "id" : 23,
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 351,
-            "column" : 20,
-            "source_fragment" : "dropProbability.read(dropProb, (bit<32>)standard_metadata.egress_port)"
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [27],
-          "actions" : ["l4s351"],
-          "base_default_next" : "node_42",
-          "next_tables" : {
-            "l4s351" : "node_42"
-          },
-          "default_entry" : {
-            "action_id" : 27,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_l4s356",
-          "id" : 24,
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 356,
-            "column" : 24,
-            "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp); ..."
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [25],
-          "actions" : ["l4s356"],
-          "base_default_next" : "node_45",
-          "next_tables" : {
-            "l4s356" : "node_45"
-          },
-          "default_entry" : {
-            "action_id" : 25,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_l4s360",
-          "id" : 25,
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 360,
-            "column" : 24,
-            "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp); ..."
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [26],
-          "actions" : ["l4s360"],
-          "base_default_next" : "node_45",
-          "next_tables" : {
-            "l4s360" : "node_45"
-          },
-          "default_entry" : {
-            "action_id" : 26,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_l4s366",
-          "id" : 26,
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 366,
-            "column" : 56,
-            "source_fragment" : "="
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [28],
-          "actions" : ["l4s366"],
-          "base_default_next" : "tbl_clonePacket",
-          "next_tables" : {
-            "l4s366" : "tbl_clonePacket"
-          },
-          "default_entry" : {
-            "action_id" : 28,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_clonePacket",
-          "id" : 27,
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 367,
-            "column" : 24,
-            "source_fragment" : "clonePacket()"
-          },
-          "key" : [],
-          "match_type" : "exact",
-          "type" : "simple",
-          "max_size" : 1024,
-          "with_counters" : false,
-          "support_timeout" : false,
-          "direct_meters" : null,
-          "action_ids" : [14],
-          "actions" : ["MyEgress.clonePacket"],
-          "base_default_next" : null,
-          "next_tables" : {
-            "MyEgress.clonePacket" : null
-          },
-          "default_entry" : {
-            "action_id" : 14,
-            "action_const" : true,
-            "action_data" : [],
-            "action_entry_const" : true
-          }
-        },
-        {
-          "name" : "tbl_l4s375",
-          "id" : 28,
-          "source_info" : {
-            "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 375,
+            "line" : 320,
             "column" : 33,
             "source_fragment" : "="
           },
@@ -4061,11 +3872,301 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [30],
-          "actions" : ["l4s375"],
+          "action_ids" : [20],
+          "actions" : ["l4s320"],
+          "base_default_next" : "node_36",
+          "next_tables" : {
+            "l4s320" : "node_36"
+          },
+          "default_entry" : {
+            "action_id" : 20,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s323",
+          "id" : 19,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 323,
+            "column" : 33,
+            "source_fragment" : "="
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [21],
+          "actions" : ["l4s323"],
+          "base_default_next" : "node_36",
+          "next_tables" : {
+            "l4s323" : "node_36"
+          },
+          "default_entry" : {
+            "action_id" : 21,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s330",
+          "id" : 20,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 330,
+            "column" : 16,
+            "source_fragment" : "random(rand_classic, 0, 65535)"
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [31],
+          "actions" : ["l4s330"],
+          "base_default_next" : "node_38",
+          "next_tables" : {
+            "l4s330" : "node_38"
+          },
+          "default_entry" : {
+            "action_id" : 31,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s338",
+          "id" : 21,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 338,
+            "column" : 20,
+            "source_fragment" : "dropProbability.read(dropProb, (bit<32>)standard_metadata.egress_port)"
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [25],
+          "actions" : ["l4s338"],
+          "base_default_next" : "node_40",
+          "next_tables" : {
+            "l4s338" : "node_40"
+          },
+          "default_entry" : {
+            "action_id" : 25,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s343",
+          "id" : 22,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 343,
+            "column" : 24,
+            "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp); ..."
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [23],
+          "actions" : ["l4s343"],
+          "base_default_next" : "node_43",
+          "next_tables" : {
+            "l4s343" : "node_43"
+          },
+          "default_entry" : {
+            "action_id" : 23,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s347",
+          "id" : 23,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 347,
+            "column" : 24,
+            "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp); ..."
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [24],
+          "actions" : ["l4s347"],
+          "base_default_next" : "node_43",
+          "next_tables" : {
+            "l4s347" : "node_43"
+          },
+          "default_entry" : {
+            "action_id" : 24,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s353",
+          "id" : 24,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 353,
+            "column" : 37,
+            "source_fragment" : "="
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [26],
+          "actions" : ["l4s353"],
           "base_default_next" : null,
           "next_tables" : {
-            "l4s375" : null
+            "l4s353" : null
+          },
+          "default_entry" : {
+            "action_id" : 26,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s359",
+          "id" : 25,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 359,
+            "column" : 20,
+            "source_fragment" : "dropProbability.read(dropProb, (bit<32>)standard_metadata.egress_port)"
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [29],
+          "actions" : ["l4s359"],
+          "base_default_next" : "node_46",
+          "next_tables" : {
+            "l4s359" : "node_46"
+          },
+          "default_entry" : {
+            "action_id" : 29,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s364",
+          "id" : 26,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 364,
+            "column" : 24,
+            "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp); ..."
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [27],
+          "actions" : ["l4s364"],
+          "base_default_next" : "node_49",
+          "next_tables" : {
+            "l4s364" : "node_49"
+          },
+          "default_entry" : {
+            "action_id" : 27,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s368",
+          "id" : 27,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 368,
+            "column" : 24,
+            "source_fragment" : "dropProbability.write((bit<32>)standard_metadata.egress_port, dropProb_temp); ..."
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [28],
+          "actions" : ["l4s368"],
+          "base_default_next" : "node_49",
+          "next_tables" : {
+            "l4s368" : "node_49"
+          },
+          "default_entry" : {
+            "action_id" : 28,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s374",
+          "id" : 28,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 374,
+            "column" : 56,
+            "source_fragment" : "="
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [30],
+          "actions" : ["l4s374"],
+          "base_default_next" : "tbl_clonePacket",
+          "next_tables" : {
+            "l4s374" : "tbl_clonePacket"
           },
           "default_entry" : {
             "action_id" : 30,
@@ -4075,11 +4176,69 @@
           }
         },
         {
-          "name" : "tbl_l4s379",
+          "name" : "tbl_clonePacket",
           "id" : 29,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 379,
+            "line" : 375,
+            "column" : 24,
+            "source_fragment" : "clonePacket()"
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [16],
+          "actions" : ["MyEgress.clonePacket"],
+          "base_default_next" : null,
+          "next_tables" : {
+            "MyEgress.clonePacket" : null
+          },
+          "default_entry" : {
+            "action_id" : 16,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s383",
+          "id" : 30,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 383,
+            "column" : 33,
+            "source_fragment" : "="
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [32],
+          "actions" : ["l4s383"],
+          "base_default_next" : null,
+          "next_tables" : {
+            "l4s383" : null
+          },
+          "default_entry" : {
+            "action_id" : 32,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_l4s387",
+          "id" : 31,
+          "source_info" : {
+            "filename" : "/vagrant/3code/l4s.p4",
+            "line" : 387,
             "column" : 52,
             "source_fragment" : "="
           },
@@ -4090,14 +4249,14 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [31],
-          "actions" : ["l4s379"],
+          "action_ids" : [33],
+          "actions" : ["l4s387"],
           "base_default_next" : "tbl_clonePacket_0",
           "next_tables" : {
-            "l4s379" : "tbl_clonePacket_0"
+            "l4s387" : "tbl_clonePacket_0"
           },
           "default_entry" : {
-            "action_id" : 31,
+            "action_id" : 33,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
@@ -4105,10 +4264,10 @@
         },
         {
           "name" : "tbl_clonePacket_0",
-          "id" : 30,
+          "id" : 32,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 380,
+            "line" : 388,
             "column" : 20,
             "source_fragment" : "clonePacket()"
           },
@@ -4119,14 +4278,14 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [15],
+          "action_ids" : [17],
           "actions" : ["MyEgress.clonePacket"],
           "base_default_next" : null,
           "next_tables" : {
             "MyEgress.clonePacket" : null
           },
           "default_entry" : {
-            "action_id" : 15,
+            "action_id" : 17,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
@@ -4136,11 +4295,11 @@
       "action_profiles" : [],
       "conditionals" : [
         {
-          "name" : "node_22",
-          "id" : 6,
+          "name" : "node_26",
+          "id" : 8,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 290,
+            "line" : 298,
             "column" : 12,
             "source_fragment" : "standard_metadata.instance_type == BMV2_V1MODEL_INSTANCE_TYPE_EGRESS_CLONE"
           },
@@ -4158,15 +4317,15 @@
               }
             }
           },
-          "true_next" : "tbl_l4s291",
-          "false_next" : "tbl_l4s299"
+          "true_next" : "tbl_l4s299",
+          "false_next" : "tbl_l4s307"
         },
         {
-          "name" : "node_26",
-          "id" : 7,
+          "name" : "node_30",
+          "id" : 9,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 308,
+            "line" : 316,
             "column" : 16,
             "source_fragment" : "EWMA <= TARGET_DELAY"
           },
@@ -4244,15 +4403,15 @@
               }
             }
           },
-          "true_next" : "tbl_l4s309",
-          "false_next" : "node_28"
+          "true_next" : "tbl_l4s317",
+          "false_next" : "node_32"
         },
         {
-          "name" : "node_28",
-          "id" : 8,
+          "name" : "node_32",
+          "id" : 10,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 311,
+            "line" : 319,
             "column" : 21,
             "source_fragment" : "(EWMA > TARGET_DELAY) && (EWMA < (TARGET_DELAY<<1))"
           },
@@ -4410,15 +4569,15 @@
               }
             }
           },
-          "true_next" : "tbl_l4s312",
-          "false_next" : "node_30"
+          "true_next" : "tbl_l4s320",
+          "false_next" : "node_34"
         },
         {
-          "name" : "node_30",
-          "id" : 9,
+          "name" : "node_34",
+          "id" : 11,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 314,
+            "line" : 322,
             "column" : 21,
             "source_fragment" : "EWMA >= (TARGET_DELAY<<1)"
           },
@@ -4496,15 +4655,15 @@
               }
             }
           },
-          "true_next" : "tbl_l4s315",
-          "false_next" : "node_32"
+          "true_next" : "tbl_l4s323",
+          "false_next" : "node_36"
         },
         {
-          "name" : "node_32",
-          "id" : 10,
+          "name" : "node_36",
+          "id" : 12,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 319,
+            "line" : 327,
             "column" : 16,
             "source_fragment" : "target_violation == 1"
           },
@@ -4522,15 +4681,15 @@
               }
             }
           },
-          "true_next" : "tbl_l4s322",
-          "false_next" : "node_48"
+          "true_next" : "tbl_l4s330",
+          "false_next" : "node_52"
         },
         {
-          "name" : "node_34",
-          "id" : 11,
+          "name" : "node_38",
+          "id" : 13,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 328,
+            "line" : 336,
             "column" : 20,
             "source_fragment" : "hdr.ipv4.l4s == 1"
           },
@@ -4548,15 +4707,15 @@
               }
             }
           },
-          "true_next" : "tbl_l4s330",
-          "false_next" : "tbl_l4s351"
+          "true_next" : "tbl_l4s338",
+          "false_next" : "tbl_l4s359"
         },
         {
-          "name" : "node_36",
-          "id" : 12,
+          "name" : "node_40",
+          "id" : 14,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 333,
+            "line" : 341,
             "column" : 24,
             "source_fragment" : "rand_l4s < dropProb"
           },
@@ -4594,15 +4753,15 @@
               }
             }
           },
-          "true_next" : "tbl_l4s335",
-          "false_next" : "tbl_l4s339"
+          "true_next" : "tbl_l4s343",
+          "false_next" : "tbl_l4s347"
         },
         {
-          "name" : "node_39",
-          "id" : 13,
+          "name" : "node_43",
+          "id" : 15,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 344,
+            "line" : 352,
             "column" : 24,
             "source_fragment" : "mark_decision_l4s"
           },
@@ -4618,14 +4777,14 @@
             }
           },
           "false_next" : null,
-          "true_next" : "tbl_l4s345"
+          "true_next" : "tbl_l4s353"
         },
         {
-          "name" : "node_42",
-          "id" : 14,
+          "name" : "node_46",
+          "id" : 16,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 354,
+            "line" : 362,
             "column" : 24,
             "source_fragment" : "rand_classic < dropProb"
           },
@@ -4643,15 +4802,15 @@
               }
             }
           },
-          "true_next" : "tbl_l4s356",
-          "false_next" : "tbl_l4s360"
+          "true_next" : "tbl_l4s364",
+          "false_next" : "tbl_l4s368"
         },
         {
-          "name" : "node_45",
-          "id" : 15,
+          "name" : "node_49",
+          "id" : 17,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 365,
+            "line" : 373,
             "column" : 24,
             "source_fragment" : "drop_decision_classic"
           },
@@ -4667,14 +4826,14 @@
             }
           },
           "false_next" : null,
-          "true_next" : "tbl_l4s366"
+          "true_next" : "tbl_l4s374"
         },
         {
-          "name" : "node_48",
-          "id" : 16,
+          "name" : "node_52",
+          "id" : 18,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 372,
+            "line" : 380,
             "column" : 21,
             "source_fragment" : "target_violation == 2"
           },
@@ -4693,14 +4852,14 @@
             }
           },
           "false_next" : null,
-          "true_next" : "node_49"
+          "true_next" : "node_53"
         },
         {
-          "name" : "node_49",
-          "id" : 17,
+          "name" : "node_53",
+          "id" : 19,
           "source_info" : {
             "filename" : "/vagrant/3code/l4s.p4",
-            "line" : 374,
+            "line" : 382,
             "column" : 20,
             "source_fragment" : "hdr.ipv4.l4s == 1"
           },
@@ -4718,8 +4877,8 @@
               }
             }
           },
-          "true_next" : "tbl_l4s375",
-          "false_next" : "tbl_l4s379"
+          "true_next" : "tbl_l4s383",
+          "false_next" : "tbl_l4s387"
         }
       ]
     }
@@ -4730,7 +4889,7 @@
       "id" : 0,
       "source_info" : {
         "filename" : "/vagrant/3code/l4s.p4",
-        "line" : 393,
+        "line" : 401,
         "column" : 8,
         "source_fragment" : "update_checksum( ..."
       },

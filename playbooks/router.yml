@@ -33,11 +33,9 @@
     - name: Insert general configs, mirroring and queues
       shell: cat /vagrant/2code/general_config.txt | simple_switch_CLI
     
-
     - name: Disable offloading features on enp0s9
       command: ethtool --offload enp0s9 gso off tso off gro off
     
-
     - name: Disable offloading features on enp0s10
       command: ethtool --offload enp0s10 gso off tso off gro off
 
