@@ -12,6 +12,8 @@ P4-Based Defense Mechanism: Line-rate detection and mitigation without requiring
 <p align="center">
   <img src="img/L4Sec-1.png" alt="Overview Packet Processing" width="400"/>
   <img src="img/L4Sec2-1.png" alt="" width="190"/>
+  <br>
+  <sub><b>Figure 1:</b>Overview of packet processing and L4S attack detection environment.<sub>
 </p>
 
 Used Tools:
