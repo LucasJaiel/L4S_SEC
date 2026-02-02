@@ -6,11 +6,11 @@
 #define PORTS 10
 #define MAX_FLOWS 256  
 
-// 1 ms (tempo de um RTT comum)
+// Recirculation packet capture interval time
 #define SAMPLE_INTERVAL_US 10
-// LIMITE DE STRIKES PARA BLOQUEIO
+// Strike limits for blacklist insertion
 #define MAX_STRIKES 1000
-// JANELA DE VERIFICAÇÃO: 100ms (100.000 microsegundos)
+// Verification window after congestion detected
 #define VERIFICATION_WINDOW_US 10000000000
 
 const bit<16> TYPE_IPV4 = 0x800;
@@ -113,7 +113,7 @@ control MyIngress(inout headers hdr,
     counter(4, CounterType.packets) dropPkt;
     counter(4, CounterType.packets) dropRecirc;
 
-    // ========== REGISTRADORES PARA DETECÇÃO DE ATAQUE ==========
+    // ========== Registers for attack detection ==========
     // Armazena se um fluxo (hash) foi marcado com CE recentemente
     register<bit<1>>(MAX_FLOWS) reg_congested_flows; 
     // Armazena fluxos bloqueados (maliciosos)
@@ -121,7 +121,7 @@ control MyIngress(inout headers hdr,
     // Contador de strikes/infrações por fluxo
     register<bit<32>>(MAX_FLOWS) reg_strikes_counter;
     
-    // ========== NOVO: JANELA DE VERIFICAÇÃO TEMPORAL ==========
+    // ========== Temporal verification window ==========
     // Flag global que indica se estamos dentro da janela de verificação
     register<bit<1>>(1) reg_verification_window_active;
     // Timestamp de quando a janela foi ativada
@@ -185,7 +185,7 @@ control MyIngress(inout headers hdr,
                 return;
             }
 
-            // ========== NOVA LÓGICA: VERIFICAÇÃO DE ACKs APENAS DENTRO DA JANELA ==========
+            // ========== VERIFICAÇÃO DE ACKs APENAS DENTRO DA JANELA ==========
             bit<1> window_active;
             reg_verification_window_active.read(window_active, 0);
             
@@ -197,7 +197,7 @@ control MyIngress(inout headers hdr,
                 bit<48> current_time = standard_metadata.ingress_global_timestamp;
                 bit<48> elapsed_time = current_time - window_start;
                 
-                // Se passou 100ms, DESATIVA a janela
+                // Se passou o tempo DESATIVA a janela
                 if (elapsed_time >= VERIFICATION_WINDOW_US) {
                     reg_verification_window_active.write(0, 0);
                     // Não precisa limpar reg_congested_flows - será sobrescrito naturalmente
@@ -235,13 +235,13 @@ control MyIngress(inout headers hdr,
                                     #reg_strikes_counter.write(reverse_hash, 0);
                                 }
                             } else {
-                                // COMPORTAMENTO CORRETO: ACK sinalizou ECE
+                                // COMPORTAMENTO Benigno: ACK sinalizou ECE
                                 // Reseta strikes (comportamento benigno)
                                 if (current_strikes > 0) {
                                     reg_strikes_counter.write(reverse_hash, 0);
                                 }
                                 // Limpa marcação de congestionamento (já respondeu)
-                                #reg_congested_flows.write(reverse_hash, 0);
+                                reg_congested_flows.write(reverse_hash, 0);
                             }
                         }
                     }
@@ -250,7 +250,7 @@ control MyIngress(inout headers hdr,
             // ============================================================================
         }
 
-        // Lógica original de Recirculação (BMv2 default) e Roteamento
+        // Lógica original de Recirculação de pacotes Classic (BMv2 default) e Roteamento
         if (standard_metadata.instance_type == BMV2_V1MODEL_INSTANCE_TYPE_RECIRC) {
             flagtoDrop_reg.write(meta.queue_metadata.output_port, 1);
             drop_recirc();
@@ -368,7 +368,7 @@ control MyEgress(inout headers hdr,
                         hdr.ipv4.ecn = 3;
                         ecnMarkedPkt.count((bit<32>)standard_metadata.egress_port);
 
-                        // === CLONAGEM PARA DETECÇÃO (ao invés de recirculação) ===
+                        // === CLONAGEM PARA Ativar gatilho do Egress ===
                         bit<48> last_sample_ts;
                         bit<48> now = standard_metadata.egress_global_timestamp;
                         reg_sampling_timer.read(last_sample_ts, 0);
