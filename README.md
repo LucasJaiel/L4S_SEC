@@ -1,4 +1,7 @@
-This repository contains the artifacts used in the paper: When ECN Lies: Unfairness and Exploitation in L4S.
+# Repository Proposal
+This repository contains the artifacts used in the paper: **When ECN Lies: Unfairness and Exploitation in L4S**.
+
+## Definition: L4S and Security Challenges
 Low Latency, Low Loss and Scalable Throughput (L4S) is a recent IETF architecture that enables Internet applications to achieve ultra-low queuing latency and scalable throughput. However, the architecture faces critical security challenges, particularly the non-responsive ECN attack, where malicious flows exploit the low-latency queue by manipulating ECN headers.
   <p align="center">
     <img src="img/ataque-wide.svg" alt="Enviroment" width="300"/>
